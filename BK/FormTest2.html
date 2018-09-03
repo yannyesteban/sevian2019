@@ -1,0 +1,301 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documento sin título</title>
+<link href="css/sgMenu.css" rel="stylesheet" type="text/css"/>
+<link href="css/sgWindow.css" rel="stylesheet" type="text/css"/>
+<link href="css/sgCalendar.css" rel="stylesheet" type="text/css"/>
+<link href="css/selectText.css" rel="stylesheet" type="text/css"/>
+<link href="css/sgTab.css" rel="stylesheet" type="text/css"/>
+<link href="css/sgAjax.css" rel="stylesheet" type="text/css"/>
+<link href="css/grid.css" rel="stylesheet" type="text/css"/>
+<link href="css/main.css" rel="stylesheet" type="text/css"/>
+<link type="text/css" href="css/form.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div id="main">
+	
+	
+	
+</div>
+
+
+
+<script src="_js/_sgQuery.js"></script>
+<script src="js/sgAjax.js"></script>
+<script src="js/Sevian/Drag.js"></script>
+<script src="js/Sevian/Window.js"></script>
+<script src="../sigefor2017/js/sgTipsPopup.js"></script>
+<script src="js/sgDB.js"></script>
+<script src="js/sgInit.js"></script>
+<script src="js/sgSevian.js"></script>
+<script src="js/sgTab.js"></script>
+
+<script src="js/Sevian/Valid.js"></script>
+<script src="js/sgCalendar.js"></script>
+<script src="js/Sevian/Form.js"></script>
+<script src="js/Sevian/Input.js"></script>
+
+<script>
+(function(){
+	var f = new Sevian.Form({
+		id: "perla1",
+		className: "soho",
+		target:"main",
+		caption: "Registro de Personal",
+
+
+	});	
+	f.addPage({caption:"Page One", locatePage:false});
+	f.addPage({caption:"Page Two - I", locatePage:0});
+	f.addPage({caption:"Page Two - II", locatePage:0});
+	f.addPage({caption:"Page Two - III", locatePage:false});
+	f.addPage({caption:"Page Two - IV", locatePage:0});
+	f.addField({
+		caption: "Número",
+		comment: "Número de seguro social",
+		input:{
+			type: "text",
+			id:"pass",
+			value: "9566-6554",
+			events:{
+				click:function(){
+					
+				}
+			}
+		}
+	});	
+	f.addField({
+		caption: "Pass",
+		comment: "Pass Nacional Privado",
+		input:{
+			type: "text",
+			id: "pass1",
+			value: "k-5200",
+		}
+	});	
+
+	f.addPage({caption:"Datos Básicos", locatePage:3});
+	f.setPage(-1);
+	f.addField({
+		//locatePage:-1,
+		caption: "Fecha",
+		className: "x22",
+		id:"c011",
+		rules:{
+			required:{msg:'Error {=title}'},	
+			email:{},
+		},
+		input:{
+			input : "DateInput",
+			type: "calendar",
+			id:"fecha",
+			value: "1975-10-24",
+			events:{
+				_click: function(){
+					alert(99);
+				},
+			},
+
+		}
+	});
+	f.addField({
+		//locatePage:-1,
+		caption: "Mi Cédula",
+		className: "x22",
+		id:"c011",
+		_rules:{
+			required:{msg:'Error {=title}'},	
+			email_:{},
+		},
+		input:{
+			type: "text",
+			id:"cedula",
+			value: "12474737",
+			events:{
+				_click: function(){
+					alert(99);
+				},
+			},
+
+		}
+	});	
+	f.addField({
+		caption: "Nombre",
+		comment: "Nombre del Usurio",
+		className: "x22",
+		id: "c011",
+		_rules:{
+			required:{msg:'Error {=title}'},	
+			email_:{},
+		},
+		input:{
+			type: "text",
+			id: "nombre",
+			value: "Yanny",
+			events:{
+				_click: function(){
+					alert(99);
+				},
+			},
+
+		}
+	});
+
+	//f.setMain();
+
+	f.addPage({caption:"Datos Privados"});	
+	f.addTab({});
+
+	f.addTabPage({title:"Datos Básico"});
+	f.addPage({caption:"Sección I"});	
+	f.addField({
+		caption: "Edad",
+		className: "x22",
+		id: "edad",
+		_rules:{
+			required:{msg:'Error {=title}'},	
+			email_:{},
+		},
+		input:{
+			type: "select",
+			id: "edad",
+			value: "Yanny",
+			events:{
+				_click: function(){
+					alert(99);
+				},
+			},
+
+		}
+	});
+
+	f.addField({
+		caption: "Estado",
+		className: "x22",
+		id: "estado",
+		_rules:{
+			required:{msg:'Error {=title}'},	
+			email_:{},
+		},
+		input:{
+			type: "text",
+			id: "estado",
+			value: "Yanny",
+			events:{
+				_click: function(){
+					alert(99);
+				},
+			},
+
+		}
+	});
+
+	f.addTabPage({title:"Datos Laborales"});	
+	
+	f.addTab({locatePage:1})
+	f.addTabPage({title:'Yahoo'});
+	
+	f.addField({
+		id:"222",
+		caption:"Search",
+		rules:{
+			required:{},
+		}
+		
+	});
+	
+	f.addTabPage({title:'Altavista'});
+	f.addField({
+		caption:"Buscar",
+		rules:{
+			required:{},
+		}
+		
+	});
+	
+	f.setPage(-1);
+	f.addField({
+		caption:"Enviar",
+		input:{
+			type:"button",
+			value:"Send->",
+			events:{
+				click: function(){
+					//f.valid();
+					f.setValue({
+						home: "abc",
+						casa:"1234",
+					});
+				}
+			}
+		}
+	});
+
+	f.addInput({
+		caption:"RESET",
+		input:{
+			type:"button",
+			value:"RESET",
+			events:{
+				click: function(){
+					//f.valid();
+					f.reset();
+				}
+			}
+		}
+	});	
+	
+	f.addField({
+		caption: "nada",
+		//useRow:false,
+		input:{
+			type:"text",
+			name:"home",
+			default: "",
+		}
+		
+	});
+
+	f.addField({
+		locatePage:0,
+		locateTab:1,
+		caption: "<--casa-->",
+		rules:{
+			required:true,
+			integer:true,
+		},
+		input:{
+			name: "casa",
+			type:"text",
+			default: "LUZ",
+		}
+		
+	});
+	
+	f.addInput({
+	locatePage:-1,
+		caption:"Valid",
+		comment: "Validar Formulario",
+		input:{
+			type:"button",
+			value:"VALID",
+			events:{
+				click: function(){
+					f.valid();
+					//f.reset();
+				}
+			}
+		}
+	});
+	
+}());
+
+</script></body>
+</html>

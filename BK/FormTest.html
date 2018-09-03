@@ -1,0 +1,332 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documento sin título</title>
+<link href="css/sgMenu.css" rel="stylesheet" type="text/css"/>
+<link href="css/sgWindow.css" rel="stylesheet" type="text/css"/>
+<link href="css/sgCalendar.css" rel="stylesheet" type="text/css"/>
+<link href="css/selectText.css" rel="stylesheet" type="text/css"/>
+<link href="css/sgTab.css" rel="stylesheet" type="text/css"/>
+<link href="css/sgAjax.css" rel="stylesheet" type="text/css"/>
+<link href="css/grid.css" rel="stylesheet" type="text/css"/>
+<link href="css/main.css" rel="stylesheet" type="text/css"/>
+<link type="text/css" href="css/form.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div id="main">
+	
+	
+	
+</div>
+<hr>
+
+
+
+<div class="form_main">
+	<form>
+		
+		<div>
+			<div>Cedula</div>
+			<div><input id="cedula" type="text"></div>
+			
+		</div>
+		
+		
+		<div>
+			<div>Nombre</div>
+			<div id="cont_nombre"></div>
+			
+		</div>
+		
+		<div>
+			<div>Estado</div>
+			<div id="cont_estado"></div>
+			
+		</div>
+		
+		<div>
+			<div>Municipio</div>
+			<div><select id="municipio"></select></div>
+			
+		</div>
+		
+		
+  </form>
+	
+	
+</div>
+
+
+<script src="_js/_sgQuery.js"></script>
+<script src="js/sgAjax.js"></script>
+<script src="js/drag.js"></script>
+<script src="js/sgWindow.js"></script>
+<script src="js/sgDB.js"></script>
+<script src="js/sgInit.js"></script>
+<script src="js/sgSevian.js"></script>
+<script src="js/sgTab.js"></script>
+<script src="js/sgTab.js"></script>
+<script src="js/Sevian/Valid.js"></script>
+<script src="js/Sevian/Form.js"></script>
+<script src="js/Sevian/Input.js"></script>
+
+<script>
+
+var f = new Sevian.Form({
+	id: "perla1",
+	className: "soho",
+	target:"main",
+	caption: "Introducción",
+	
+	
+});	
+
+	
+f.addPage({caption:"Datos Básicos"});
+	
+f.addField({
+	caption: "Mi Cédula",
+	className: "x22",
+	id:"c011",
+	_rules:{
+		required:{msg:'Error {=title}'},	
+		email_:{},
+	},
+	input:{
+		type: "text",
+		id:" sdcccedula",
+		value: "12474737",
+		events:{
+			_click: function(){
+				alert(99);
+			},
+		},
+	
+	}
+});	
+	
+f.addField({
+	caption: "MI Nombre",
+	className: "nombre",
+	id:"_nombre_c01",
+	
+	
+	
+	input:{
+		type: "text",
+		id:"4_nombre",
+		name:"_nombre",
+		value: "Yanny",
+		events:{
+			click: function(){
+				
+			},
+		},
+	}
+});
+
+	
+f.addInput({
+	id: "z101",
+	target:"#main",
+	type:"button",
+	className: "perla",
+	_placeholder : "seleccione",
+	style: {color:"red"},
+	propertys: {title:"hola mundo"},
+	
+	value: "SEND",
+	
+	events:{
+		click: function(){f.valid()}
+	}
+	
+});	
+	
+	var tab = f.addTab({});
+
+	f.addTabPage({title:"opcion 01"});
+
+	f.addField({
+		caption: "Ciudad",
+		className: "nombre",
+		id:"_nombre_c23",
+		input:{
+			type: "text",
+			id:"_nombre",
+			name:"_nombre",
+			value: "Valencia",
+			events:{
+				click: function(){
+
+				},
+			},
+		}
+	});
+
+	f.addTabPage({title:"opcion 02"});
+	
+	f.addField({
+		caption: "Estado (email)",
+		className: "nombre",
+		id:"_nombre_c279",
+		
+		rules:{
+			email:true,	
+		},
+		input:{
+			type: "text",
+			id:"Estado",
+			name:"Estado",
+			value: "Carabobo",
+			events:{
+				click: function(){
+
+				},
+			},
+		}
+	});
+	
+f.addTabPage({title:"opcion 03"});
+f.addTabPage({title:"opcion 04"});
+f.addTabPage({title:"opcion 05"});
+	
+	
+f.setMain();	
+f.addTab({});
+f.addTabPage({title:"p1"});
+f.addTabPage({title:"P 05"});	
+
+f.addField({
+	caption: "Fecha de Nacimiento",
+	className: "x22",
+	id:"ccedula",
+	rules:{
+		required:{msg:'Error {=title}'},	
+		email:{},
+	},
+	input:{
+		type: "text",
+		id:"x3",
+		value: "24/10/1975",
+		events:{
+			_click: function(){
+				alert(99);
+			},
+		},
+	
+	}
+});
+	
+	
+f.addField({
+	caption: "Edad",
+	className: "x22",
+	locateTab:0,
+	locatePage:4,
+	id:"x2",
+	rules:{
+		integer:{msg:'Error es Integral {=title}'},	
+		_email:{},
+	},
+	input:{
+		type: "text",
+		id:"cccedula",
+		value: "Caracas",
+		events:{
+			_click: function(){
+				alert(99);
+			},
+		},
+	
+	}
+});	
+	
+(function(){
+	
+
+	var f = new Sevian.Form({});
+
+	f.addInput({
+		id: "cedula",
+		className: "perla",
+		value: 444, 
+		events:{
+			click: function(){alert(99);}
+		}
+
+	});	
+
+	f.addInput({
+		id: "nombre",
+		target:"#cont_nombre",
+		type:"text",
+		className: "perla",
+		placeholder : "seleccione",
+		style: {color:"red"},
+		propertys: {title:"hola mundo"},
+		events:{
+			_click: function(){alert(99);}
+		}
+
+	});
+
+
+	f.addInput({
+		id: "estado",
+		target:"#cont_estado",
+		type:"select",
+		className: "perla",
+		placeholder : "seleccione",
+		style: {color:"red"},
+		propertys: {title:"hola mundo"},
+
+		data:[
+			[1, "dto capital"],
+			[8, "carabobo"]
+
+
+		],
+
+		events:{
+			_click: function(){alert(99);}
+		}
+
+	});	
+
+	f.addInput({
+		id: "municipio",
+		_target:"#cont_estado",
+		type:"select",
+		className: "perla",
+		placeholder : "seleccione",
+		style: {color:"red"},
+		propertys: {title:"hola mundo"},
+
+		data:[
+			[1, "valencia"],
+			[8, "libertador"]
+
+
+		],
+
+		events:{
+			_click: function(){alert(99);}
+		}
+
+	});
+	
+
+}());
+</script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>SelectText</title>
+<link rel="stylesheet" type="text/css" href="css/selectText.css">
+<link rel="stylesheet" type="text/css" href="css/flyPopup.css">
+</head>
+
+<body>
+
+<div id="text1"></div><textarea id="z" onDblClick="s.setValue('8')">Zulia</textarea>
+<input type="button" value="OK" onClick="ff.text(z.value);ff2.text(z.value);ff.show(true);ff2.show(true)">
+<input type="button" value="NO" onClick="ff.hide(false);ff2.hide(false);">
+</body>
+<script src="../_js/_sgQuery.js"></script>
+<script src="js/drag.js"></script>
+<script src="js/selectText.js"></script>
+<script src="js/flyPopup.js"></script>
+<script>
+var s = new selectText({
+	target: "text1",
+	placeholder:"...Estados",
+	
+	events:{
+		change: function(event){
+			if(this.get().style.color=="aqua"){
+				//this.get().style.color = "pink";
+			}else{
+				//this.get().style.color = "aqua";
+			}
+			
+		}
+	},
+	data: [
+		["1","Aragua",""],
+		["2","Apure",""],
+		["3","Barinas",""],
+		["4","Carabobo",""],
+		["5","Lara",""],
+		["6","Zulia",""],
+		["7","Cojedes",""],
+		["8","Vargas",""],
+		["9","Distrito Capital",""],
+		["10","Merida",""],
+		["11","San Cristobal",""],
+		["12","Guárico",""],
+		["13","Nueva Esparta",""],
+		["14","Anzoátegui",""],
+		["15","Sucre",""],
+		["16","Amazonas",""],
+		["17","Bolivar",""],
+		["18","Falcón",""],
+		["19","Miranda",""],
+		["20","Trujillo",""],
+		["21","Delta Amacuro",""],
+		["22","Monagas",""],
+		["23","Portuguesa",""],
+		["24","Yaracuy",""],
+		["25","Dependencias Federales",""],
+		
+	],
+});	
+	
+</script>
+</html>

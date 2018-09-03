@@ -1,0 +1,312 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/sgMenu.css">
+<link rel="stylesheet" type="text/css" href="css/sgWindow.css">
+<link rel="stylesheet" type="text/css" href="css/sgCalendar.css">
+<link rel="stylesheet" type="text/css" href="css/selectText.css">
+<link rel="stylesheet" type="text/css" href="css/sgTab.css">
+<link rel="stylesheet" type="text/css" href="css/sgAjax.css">
+<title>Documento sin título</title>
+</head><body>
+<div id="menu_01"></div>
+
+
+
+<script src="_js/_sgQuery.js"></script>
+<script src="js/drag.js"></script>
+<script src="js/sgMenu.js"></script>
+<script src="js/sgWindow.js"></script>
+<script src="js/sgCalendar.js"></script>
+<script src="js/selectText.js"></script>
+<script src="js/sgTab.js"></script>
+<script src="js/sgAjax.js"></script>
+<script>
+
+	
+var m = new _menu(
+	{
+		id: "menu45",
+		target: "#menu_01",
+		className: "menu",
+		type: "default",
+		caption:"Menú Secundario1",
+			
+		wCheck: true,
+		check:function(value, id, parentId, level){
+			//alert(value)
+			db(444+"..."+id+"---"+value+" level: "+level);
+			
+		}		
+		
+	}
+);
+
+
+
+	m.add({
+		id:0,
+		parentId:false,
+		text:"opcion 0",
+		checked: true,
+		_className:"uu",
+		icon:"images/history_02.png",
+		child:"<hr>Hola<hr>",
+		_wCheck:false,
+	
+		_events:{
+			click:function(){alert(this.text)},
+			dblclick:"alert(777)"	
+		}
+
+	});
+
+
+	m.add({
+		id:1,
+		parentId:0,
+		text:"opcion 1",
+		class:"",
+		icon:"images/maps_02.png",
+		check:"",
+		_sep:true,
+		events:{
+			click:"alert(this.text);",
+		}
+
+	});
+
+
+	m.add({
+		id:2,
+		parentId:false,
+		text:"opcion 2",
+		class:"",
+		icon:"",
+		check:"",
+		_mode:"open",
+
+
+	});
+
+	m.add({
+		id:3,
+		parentId:false,
+		text:"opcion 3",
+		class:"",
+		icon:"",
+		check:""
+
+
+	})
+	m.add({
+		id:4,
+		parentId:2,
+		text:"opcion 4",
+		class:"",
+		icon:"images/history_02.png",
+		wCheck: true,
+		_disabled: true,
+
+
+	})
+	m.add({
+		id:5,
+		parentId:2,
+		text:"opcion 5",
+		class:"",
+		icon:"",
+		check:"",
+		_disabled: true,
+
+
+	});
+
+
+	m.add({
+		id:6,
+		parentId:4,
+		text:"opcion 6",
+		class:"",
+		icon:"images/history_02.png",
+		check:""
+
+
+	});
+
+	m.add({
+		id:7,
+		parentId:4,
+		text:"opcion 7",
+		class:"",
+		icon:"",
+		check:""
+
+
+	});
+
+	m.add({
+		id:8,
+		parentId:6,
+		text:"opcion 8",
+		class:"",
+		icon:"",
+		check:""
+
+
+	});
+
+	
+	
+	
+	m.add({
+		id:9,
+		parentId:6,
+		text:"opcion 9",
+		class:"",
+		icon:"",
+		check:"",
+		_sep:true
+
+
+	});
+
+	m.add({
+		id:10,
+		parentId:9,
+		text:"opcion 10",
+		class:"",
+		icon:"",
+		check:""
+
+
+	});
+
+	m.add({
+		id:11,
+		parentId:9,
+		text:"opcion 11",
+		class:"",
+		icon:"",
+		check:""
+
+
+	});
+
+
+	m.add({
+		id:12,
+		parentId:6,
+		text:"opcion 12",
+		class:"",
+		icon:"",
+		check:"",
+		
+		action:function(){db("action...");},
+		events:{
+			click:function(){db(88)},
+			dblclick:"db(777)"	
+		}
+
+
+	});
+
+	m.add({
+		id:13,
+		parentId:12,
+		text:"opcion 13",
+		class:"",
+		icon:"",
+		check:""
+
+	});
+
+	m.add({
+		id:14,
+		parentId:12,
+		text:"opcion 14",
+		class:"",
+		icon:"",
+		check:""
+
+	});
+
+
+	m.add({
+		id:15,
+		parentId:14,
+		text:"opcion 15",
+		class:"",
+		icon:"",
+		check:""
+
+	});
+	m.add({
+		id:16,
+		parentId:14,
+		text:"opcion 16",
+		class:"",
+		icon:"",
+		check:""
+
+	});
+
+	m.add({
+		id:17,
+		parentId:16,
+		text:"opcion 17",
+		class:"",
+		icon:"",
+		check:""
+
+	});
+	m.add({
+		id:18,
+		parentId:16,
+		text:"opcion 18",
+		class:"",
+		icon:"",
+		check:""
+
+	});
+
+	m.add({
+		id:19,
+		parentId:3,
+		text:"opcion 19",
+		class:"",
+		icon:"",
+		check:""
+
+	});	
+
+		m.add({
+		id:20,
+		parentId:4,
+		text:"opcion 20",
+		class:"",
+		icon:"images/history_02.png",
+		check:""
+
+
+	});
+	
+	m.add({
+		id:21,
+		parentId:4,
+		text:"opcion 21",
+		class:"",
+		icon:"images/history_02.png",
+		check:""
+
+
+	});
+	
+	
+
+</script>
+
+</body>
+</html>
