@@ -12,6 +12,7 @@ class SgForm extends Sevian\Panel{
 		//print_r($s);
 		
 		//echo $s->test();
+		echo ".....";
 		
 		$cn = Sevian\Connection::get();
 		

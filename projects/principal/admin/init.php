@@ -12,12 +12,12 @@ $structure = [
 
 $init = [
 	'theme'=>'sevian',
-	'title'=>'Sigefor 1.0',
+	'title'=>'Sigefor 1.00',
 	'templateName' => 'main3',
 	'elements' => [
 		[
 			'panel'		=> 4,
-			'element'	=> 'sgForm',
+			'element'	=> 'menuD',
 			'name'		=> 'uno_m',
 			'method'	=> 'request',
 			'designMode'=> true,

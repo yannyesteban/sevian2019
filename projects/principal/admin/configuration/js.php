@@ -33,9 +33,9 @@ $js = [
 	[
 		'file' 	=> "{$PATH}js/Sevian/DesignMenu.js",
 		'begin'	=> false],
-	[
+	/*[
 		'file' 	=> "{$PATH}js/Sevian/Upload.js",
-		'begin'	=> false],
+		'begin'	=> false],*/
 	[
 		'file' 	=> "{$PATH}js/sgCalendar.js",
 		'begin'	=> false],

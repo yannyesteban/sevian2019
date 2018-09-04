@@ -1,6 +1,6 @@
 <?php
-
-
+include "Action.php";
+//namespace Sevian\Sigefor;
 
 class DesignMenu extends Sevian\Panel{
 	
@@ -34,9 +34,9 @@ class DesignMenu extends Sevian\Panel{
 		$div2 = new Sevian\HTML("div");
 		$div2->id = "design2";
 		$div2->class = "design";
-		//$div->innerHTML = "HOLA";
+		$div->innerHTML = "HOLA";
 		
-		$this->script = "loadMenu();";
+		$this->script = "loadMenu();alert(9999)";
 		
 		$btn = new Sevian\HTML("input");
 		$btn->type = "button";

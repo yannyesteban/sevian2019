@@ -8,7 +8,7 @@ if(!Sevian.Input){
 var sgDesignMenu = false;
 var m1;
 (function(namespace, $){
-	
+	alert(8)
 	var dragItem = false;
 	var dragObj = false;
 	
@@ -807,7 +807,7 @@ var m1;
 
 function loadMenu(){
 	var $ = _sgQuery;
-	
+	alert(999)
 	
 	var data = [
 		
@@ -867,7 +867,9 @@ function loadMenu(){
 		data: data,
 		target: "#design2",
 	});
+	alert(3);
 	//alert($("#design").text());
+	//alert(8);
 	
 	
 }

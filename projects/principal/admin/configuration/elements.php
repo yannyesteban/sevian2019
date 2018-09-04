@@ -22,6 +22,9 @@ $cls_elements = [
 	'menuX' 	=> [
 		'file' 	=> 'mMenu.php',
 		'class' => 'Sevian\mMenu'],
+	'menuD' 	=> [
+		'file' 	=> 'Sigefor/DesignMenu.php',
+		'class' => '\DesignMenu'],
 	
 ];
 
