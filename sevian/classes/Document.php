@@ -1,11 +1,11 @@
 <?php
 /*****************************************************************
 creado: 19/12/2015
-por: Yanny Nuñez
+por: Yanny NuÃ±ez
 Version: 1.0
 
 creado: 10/08/2017
-por: Yanny Nuñez
+por: Yanny NuÃ±ez
 Version: 2.0
 *****************************************************************/
 namespace Sevian;

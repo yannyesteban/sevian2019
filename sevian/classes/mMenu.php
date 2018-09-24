@@ -10,7 +10,7 @@ class mMenu extends Panel{
 		
 		$this->_main = ["type"=>"mMenu","name"=>"bicicleta","title"=>"Bélgica"];
 		s::setMainPanel($this->panel, "mMenu", $this->getMain());
-		return "QUE....DO";
+		return "QUEDO 2018";
 	}
 	
 	

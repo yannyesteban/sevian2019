@@ -8,7 +8,7 @@ if(!Sevian.Input){
 var sgDesignMenu = false;
 var m1;
 (function(namespace, $){
-	alert(8)
+	//alert(9)
 	var dragItem = false;
 	var dragObj = false;
 	
