@@ -12,5 +12,4 @@ include 'configuration/commands.php';
 include 'configuration/css.php';
 include 'configuration/js.php';
 
-
 echo Sevian\S::render();
