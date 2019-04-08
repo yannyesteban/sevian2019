@@ -6,12 +6,14 @@
 }
 
 .sg-tab-main > .sg-tab-menu {
-  box-sizing: padding-box !important;
+  -webkit-box-sizing: padding-box !important;
+          box-sizing: padding-box !important;
   padding: 4px;
 }
 
 .sg-tab-main > .sg-tab-menu > .sg-tab-imenu {
-  box-sizing: padding-box !important;
+  -webkit-box-sizing: padding-box !important;
+          box-sizing: padding-box !important;
   background-color: #6f6f6f;
   text-decoration: none;
   color: white;
@@ -44,6 +46,4 @@
 .sg-tab-main > .sg-tab-body > .sg-tab-ibody.sg-tab-active {
   display: block !important;
 }
- 
-
- /*# sourceMappingURL= sgTab.css.map */
+/*# sourceMappingURL=sgTab.css.map */

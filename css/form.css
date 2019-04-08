@@ -1,6 +1,7 @@
 /* Scss Document */
 * {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 body {
@@ -17,11 +18,13 @@ body, html {
 
 .ss-form, .form {
   width: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f7f7f7), to(#e1e1e1));
   background: linear-gradient(#f7f7f7, #e1e1e1);
   border: 1px solid #DCDCDC;
   padding: 5px;
   margin: 0px;
-  box-shadow: 4px 4px 6px 1px #b7b7b7;
+  -webkit-box-shadow: 4px 4px 6px 1px #b7b7b7;
+          box-shadow: 4px 4px 6px 1px #b7b7b7;
 }
 
 .ss-form .caption, .form .caption {
@@ -31,12 +34,17 @@ body, html {
 }
 
 .ss-form .form-group, .form .form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .ss-form .form-group > *, .form .form-group > * {
-  flex: 1 1 auto;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
 }
 
 .ss-form .form-group .form-field, .form .form-group .form-field {
@@ -66,11 +74,13 @@ body, html {
 .ss-form .form-nav input, .form .form-nav input {
   border: 0px;
   padding: 8px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2368b0), to(#145aa3));
   background: linear-gradient(#2368b0, #145aa3);
   color: white;
 }
 
 .ss-form .form-nav input:hover, .form .form-nav input:hover {
+  background: -webkit-gradient(linear, left top, left bottom, from(#c02d2d), to(#e04545));
   background: linear-gradient(#c02d2d, #e04545);
   cursor: pointer;
 }
@@ -79,6 +89,4 @@ body, html {
   background-color: #2f8bf3;
   color: #bfffd2;
 }
- 
-
- /*# sourceMappingURL= Form.css.map */
+/*# sourceMappingURL=Form.css.map */

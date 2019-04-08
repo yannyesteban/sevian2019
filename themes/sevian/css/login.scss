@@ -1,0 +1,82 @@
+@charset "utf-8";
+
+@font-face {
+    font-family: Hemihead;
+    src: url(../../../fonts/HEMIHEAD.TTF);
+    
+}
+
+@font-face {
+    font-family: Bestlovers;
+    src: url(../../../fonts/Bestlovers.TTF);
+	//font-weight: bold;
+}
+
+*{
+	box-sizing: border-box;
+}
+
+body{
+    padding: 2px;
+    
+}
+
+.sevian{
+    background-color: #272727f8;
+    background: linear-gradient(rgba(4,4,4,1), rgb(119, 82, 119));
+
+    height: 100%;
+	//border: 1px solid red;
+	
+	//padding: 4px;
+	
+	display: flex;
+    flex-direction: row;
+    
+    .panel-left{
+        color:red;
+        flex:3 1 auto;
+    }
+    .panel-right{
+        background-color: rgba(39, 3, 3, 0.9);
+        color:rgba(83, 59, 121, 0.801);
+        flex:1 1 auto;
+    }
+
+
+}
+
+.wrapper { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    grid-auto-rows: 100px; 
+    grid-column-gap: 10px;
+   grid-row-gap: 1em;
+  } 
+  
+  .box1 { 
+    grid-column-start: 1; 
+    grid-column-end: 4; 
+    grid-row-start: 1; 
+    grid-row-end: 3; 
+  }
+  
+  .box2 { 
+    grid-column-start: 1; 
+    grid-row-start: 3; 
+    grid-row-end: 5; 
+  }
+
+  .wrapper {
+    border: 2px solid #f76707;
+    border-radius: 5px;
+    background-color: #fff4e6;
+  }
+  
+  .wrapper > div {
+    border: 2px solid #ffa94d;
+    border-radius: 5px;
+    background-color: #ffd8a8;
+    padding: 1em;
+    color: #d9480f;
+  }

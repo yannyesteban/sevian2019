@@ -13,7 +13,7 @@ $structure = [
 $init = [
 	'theme'=>'sevian',
 	'title'=>'Sigefor 1.00',
-	'templateName' => 'main3',
+	'templateName' => 'login',
 	'elements' => [
 		[
 			'panel'		=> 4,

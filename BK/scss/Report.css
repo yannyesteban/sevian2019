@@ -34,7 +34,8 @@ body {
     margin: 48px;
     padding: 48px;
     border: solid 1px #CCC;
-    box-shadow: 2px 2px 4px #888888;
+    -webkit-box-shadow: 2px 2px 4px #888888;
+            box-shadow: 2px 2px 4px #888888;
     height: 1050px;
     width: 800px;
   }
@@ -46,7 +47,8 @@ html, body {
 }
 
 * {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .header * {
@@ -65,10 +67,18 @@ html, body {
 }
 
 .header .form-main {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  flex-flow: wrap;
-  justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-flow: wrap;
+      flex-flow: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   border: 1px solid #a0a0a0;
 }
 
@@ -85,26 +95,38 @@ html, body {
 }
 
 .header .form-field {
-  flex: 1 1  auto;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1  auto;
+          flex: 1 1  auto;
   border: 1px solid #989898;
   border: 1px solid #c1c1c1;
   border: 1px solid #a0a0a0;
-  flex-direction: column;
-  flex-flow: wrap;
-  justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-flow: wrap;
+      flex-flow: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding: 2px;
   margin: 4px;
 }
 
 .header .form-field .field-caption {
   margin: 2px;
-  flex: 1 1  auto;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1  auto;
+          flex: 1 1  auto;
   font-weight: bold;
 }
 
 .header .form-field .field-input {
   margin: 2px;
-  flex: 1 1  auto;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1  auto;
+          flex: 1 1  auto;
 }
 
 .main {
@@ -124,18 +146,27 @@ html, body {
 
 .main .page {
   _margin: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .main .page .header {
-  flex: 0 0 50px;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 50px;
+          flex: 0 0 50px;
   padding: 4px 0px 4px 0px;
   border-bottom: 1px solid #515151;
 }
 
 .main .page .body {
-  flex: 1 1 auto;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
 }
 
 .main .page .body .row {
@@ -156,7 +187,9 @@ html, body {
 }
 
 .main .page .footer {
-  flex: 0 0 50px;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 50px;
+          flex: 0 0 50px;
   padding: 4px 0px 4px 0px;
 }
 
@@ -194,6 +227,4 @@ html, body {
   padding: 1px;
   margin: 1px;
 }
- 
-
- /*# sourceMappingURL= Report.css.map */
+/*# sourceMappingURL=Report.css.map */
