@@ -25,6 +25,7 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  display: none;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -51,9 +52,10 @@ body {
   display: grid;
   -ms-grid-columns: (1fr)[3];
       grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 100px;
+  grid-auto-rows: auto;
   grid-column-gap: 10px;
   grid-row-gap: 1em;
+  height: 100%;
 }
 
 .box1 {

@@ -30,7 +30,8 @@ body{
 	
 	//padding: 4px;
 	
-	display: flex;
+    display: flex;
+    display: none;
     flex-direction: row;
     
     .panel-left{
@@ -49,9 +50,11 @@ body{
 .wrapper { 
     display: grid; 
     grid-template-columns: repeat(3, 1fr); 
-    grid-auto-rows: 100px; 
+    //grid-template-rows:2fr;
+    grid-auto-rows: auto; 
     grid-column-gap: 10px;
    grid-row-gap: 1em;
+   height: 100%;
   } 
   
   .box1 { 
