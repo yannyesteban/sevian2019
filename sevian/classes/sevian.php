@@ -360,6 +360,7 @@ class S{
 	
 	public static function evalParams(){
 		if(isset(self::$req["__sg_params"]) and self::$req["__sg_params"] != ""){
+
 			self::$sequence(json_decode(self::$req["__sg_params"]));
 			
 		}
