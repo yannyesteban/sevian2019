@@ -1,5 +1,5 @@
 <?php
-
+include '../../../sevian/classes/functions.php';
 include '../../../sevian/classes/sevian.php';
 
 include 'init.php';

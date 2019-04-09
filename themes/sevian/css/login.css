@@ -11,45 +11,25 @@
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-family: arial;
 }
 
-body {
-  padding: 2px;
+body, html {
+  padding: 0px;
+  margin: 0px;
+  height: 100%;
 }
 
 .sevian {
   background-color: #272727f8;
-  background: -webkit-gradient(linear, left top, left bottom, from(#040404), to(#775277));
-  background: linear-gradient(#040404, #775277);
+  background: -webkit-gradient(linear, left top, left bottom, from(#040404), color-stop(#949494), to(#d6c8c8));
+  background: linear-gradient(#040404, #949494, #d6c8c8);
+  background-image: linear-gradient(-60deg, black, #706f6f, #2c2c2c);
   height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  display: none;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-}
-
-.sevian .panel-left {
-  color: red;
-  -webkit-box-flex: 3;
-      -ms-flex: 3 1 auto;
-          flex: 3 1 auto;
-}
-
-.sevian .panel-right {
-  background-color: rgba(39, 3, 3, 0.9);
-  color: rgba(83, 59, 121, 0.801);
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 auto;
-          flex: 1 1 auto;
 }
 
 .wrapper {
-  display: -ms-grid;
-  display: grid;
+  display: none;
   -ms-grid-columns: (1fr)[3];
       grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: auto;
@@ -65,6 +45,7 @@ body {
   -ms-grid-row: 1;
       grid-row-start: 1;
   grid-row-end: 3;
+  height: 60px;
 }
 
 .box2 {
@@ -87,5 +68,33 @@ body {
   background-color: #ffd8a8;
   padding: 1em;
   color: #d9480f;
+}
+
+.main {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 1fr;
+      grid-template-columns: 2fr 1fr;
+  -ms-grid-rows: 100px auto;
+      grid-template-rows: 100px auto;
+  height: 100%;
+}
+
+.main .menu {
+  -ms-grid-column: 1;
+      grid-column-start: 1;
+  grid-column-end: 3;
+  margin: 4px 4px 0px 4px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.main .panel-left {
+  margin: 4px 0px 4px 4px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.main .panel-right {
+  margin: 4px;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 /*# sourceMappingURL=login.css.map */

@@ -332,23 +332,30 @@ class S{
 		
 	}
 	public static function vars($q){
-		return Tool::vars($q, array(
-			array(
+		return Tool::vars($q, [
+			[
 				'token' 	=> '@',
 				'data' 		=> self::$ses,
 				'default' 	=> false
-			),
-			array(
+			],
+			[
 				'token'		=> '\#',
 				'data' 		=> self::$req,
 				'default' 	=> false
-			),
-			array(
+			],
+			[
 				'token' 	=> '&EX_',
 				'data' 		=> self::$exp,
 				'default' 	=> false
-			),
-		));
+			],
+		]);
+	}
+
+	public static function params($q){
+		$params = false;
+		$q = self::vars($q);
+		\Sevian\Tool::param($q, $params);
+		return $params;
 	}
 	
 	public static function evalParams(){
@@ -502,10 +509,11 @@ class S{
 		return self::$_fragments;
 		
 	}
+	
+	/*Método para incluir los archivos de las clases que vamos a utilizar*/
 	public static function setClassElement($name, $info){
-		//require_once($info["file"]);
-		
-		if(isset($info['file']) and $info['file'] != ''){
+	
+		if($info['file'] ?? '' != ''){
 			require_once($info['file']);
 		}
 		self::$_clsElement[$name] = $info['class'];

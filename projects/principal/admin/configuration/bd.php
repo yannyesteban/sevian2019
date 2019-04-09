@@ -11,13 +11,13 @@ $cn = [
 		'dbase'		=> 'sevian_2019',
 		'charset'	=> 'utf-8'],
 	
-	'sevian_2017' => [
+	'sevian' => [
 		'driver'	=> 'mysql',
 		'host'		=> '127.0.0.1',
 		'port'		=> '3306',
 		'user'		=> 'root',
 		'pass'		=> '123456',
-		'dbase'		=> 'sevian',
+		'dbase'		=> 'seniat_2017',
 		'charset'	=> 'utf-8'],
 	
 	

@@ -60,9 +60,16 @@ class Form extends \Sevian\Panel{
 	
 	public $fields = [];
 	
+	public $showCaption = true;
+
 	
 	private $main = false;
 	
+
+	protected $tForms = "_sg_forms";
+	protected $tFormFields = "_sg_form_fields";
+	protected $_params = false;
+
 	public function __construct($opt = array()){
 		
 		foreach($opt as $k => $v){
@@ -105,10 +112,8 @@ class Form extends \Sevian\Panel{
 	}
 	
 	private function getInfoFields($query){
+
 		return $this->cn->infoQuery($query);
-		
-		
-		
 		
 	}
 	
@@ -116,10 +121,12 @@ class Form extends \Sevian\Panel{
 		
 		$cn = $this->cn;
 
-		$cn->query = "SELECT * FROM _sg_forms WHERE form = '$this->name'";
+		$cn->query = "
+			SELECT * 
+			FROM $this->tForms 
+			WHERE form = '$this->name'";
 		
-		$result = $cn->execute();
-		
+			$result = $cn->execute();
 		
 		if($rs = $cn->getDataAssoc($result)){
 
@@ -128,16 +135,30 @@ class Form extends \Sevian\Panel{
 			}
 			
 		}
+		\Sevian\S::setSes("f", 'USA');
+		/* leemos el campo params y remplaamos la informacion del objeto */
+		$this->_params = \Sevian\S::params($this->params);
+		
+		if($this->_params){
+			
+			foreach($this->_params as $k => $v){
+				$this->$k = $v;
+			}
+		}
+
 
 		$info = $this->getInfoFields($this->query);
-
 		$fields = $info->fields;
 
 		foreach($fields as $k => $v){
+			
 			$this->fields[$k] = new \Sevian\Sigefor\InfoField($v);
 		}
 
-		$q = "SELECT * FROM _sg_form_fields WHERE form = '$this->name'";
+		$q = "
+			SELECT * 
+			FROM $this->tFormFields 
+			WHERE form = '$this->name'";
 
 		$result = $cn->execute($q);
 
@@ -196,7 +217,10 @@ class Form extends \Sevian\Panel{
 	public function form(){
 		
 		$f = new \Sevian\Form();
-		$f->setCaption($this->title.'...');
+		if($this->showCaption){
+			$f->setCaption($this->title);
+		}
+		
 		
 		foreach($this->fields as $k => $field){
 			

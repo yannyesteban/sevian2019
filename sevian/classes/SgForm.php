@@ -12,14 +12,14 @@ class SgForm extends Sevian\Panel{
 		//print_r($s);
 		
 		//echo $s->test();
-		echo ".....";
+		//echo ".....";
 		
 		$cn = Sevian\Connection::get();
 		
 		$cn->query = "SELECT a.*, status, status  FROM cfg_actions as a where action='guardar'";
 		
 		
-		$info = $cn->infoQuery("select * from empresas");
+		$info = $cn->infoQuery("select 1 as x");
 		
 		//print_r($info);
 		
@@ -29,18 +29,18 @@ class SgForm extends Sevian\Panel{
 			
 			$titulo = $rs["title"];
 		}
-		
+		echo(3);
 		$cn = Sevian\Connection::get("sevian");
-		
-		$cn->query = "select * from test";
+		echo(4);
+		$cn->query = "select * from acciones limit 1";
 		
 		$result = $cn->execute();
 		
 		if($rs = $cn->getDataAssoc($result)){
 			
-			//echo "<br>......".$rs["ciudad"];
+			echo "<br>......".$rs["codigo"];
 		}
-		
+		echo(".....");
 		//print_r($cn->infoQuery("select TT.*, ciudad, ciudad as cc from test as TT"));
 		
 		//$bd = new PDO('pgsql:dbname=sevian host=localhost', "postgres", "postgres");

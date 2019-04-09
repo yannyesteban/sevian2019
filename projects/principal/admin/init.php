@@ -17,6 +17,15 @@ $init = [
 	'elements' => [
 		[
 			'panel'		=> 4,
+			'element'	=> 'sgForm',
+			'name'		=> 'login',
+			'method'	=> 'request',
+			'designMode'=> true,
+			'fixed'		=> true,
+		],
+		
+		[
+			'panel'		=> 44,
 			'element'	=> 'menuD',
 			'name'		=> 'uno_m',
 			'method'	=> 'request',
@@ -24,7 +33,7 @@ $init = [
 			'fixed'		=> true,
 		],
 		[
-			'panel'		=> 6,
+			'panel'		=> 66,
 			'element'	=> 'ImagesDir',
 			'name'		=> 'dos',
 			'method'	=> 'toolbar',
@@ -32,7 +41,7 @@ $init = [
 			'fixed'		=> true,
 		],
 		[
-			'panel'		=> 1,
+			'panel'		=> 11,
 			'element'	=> 'menuX',
 			'name'		=> 'dos',
 			'method'	=> 'toolbar',
