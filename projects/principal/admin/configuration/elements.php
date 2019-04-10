@@ -4,7 +4,7 @@ $cls_elements = [
 	'form' => [
 		'file' 	=> 'SgForm.php',
 		'class' => 'SgForm'],
-	'menu' 		=> [
+	'menux' 		=> [
 		'file' 	=> 'SgMenu.php',
 		'class' => 'SgMenu'],
 	'fragment' 	=> [
@@ -25,6 +25,9 @@ $cls_elements = [
 	'menuD' 	=> [
 		'file' 	=> 'Sigefor/DesignMenu.php',
 		'class' => '\DesignMenu'],
+	'menu' 		=> [
+		'file' 	=> 'Sigefor/Menu.php',
+		'class' => '\Sevian\Sigefor\Menu'],		
 	
 ];
 

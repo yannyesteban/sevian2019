@@ -16,6 +16,14 @@ $init = [
 	'templateName' => 'login',
 	'elements' => [
 		[
+			'panel'		=> 1,
+			'element'	=> 'menu',
+			'name'		=> 'principal',
+			'method'	=> 'create',
+			'designMode'=> true,
+			'fixed'		=> true,
+		],
+		[
 			'panel'		=> 4,
 			'element'	=> 'sgForm',
 			'name'		=> 'login',
@@ -40,14 +48,7 @@ $init = [
 			'designMode'=> false,
 			'fixed'		=> true,
 		],
-		[
-			'panel'		=> 11,
-			'element'	=> 'menuX',
-			'name'		=> 'dos',
-			'method'	=> 'toolbar',
-			'designMode'=> false,
-			'fixed'		=> true,
-		],
+		
 	
 	],
 	
