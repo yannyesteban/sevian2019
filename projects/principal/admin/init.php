@@ -31,7 +31,7 @@ $init = [
 			'designMode'=> true,
 			'fixed'		=> true,
 		],
-		
+		/*
 		[
 			'panel'		=> 44,
 			'element'	=> 'menuD',
@@ -48,7 +48,7 @@ $init = [
 			'designMode'=> false,
 			'fixed'		=> true,
 		],
-		
+		*/
 	
 	],
 	

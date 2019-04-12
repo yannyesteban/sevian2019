@@ -192,7 +192,7 @@ class HTML{
 		case "input":
 		case "meta":
 		case "link":
-			return "<$this->tagName".$this->renderAttribute()."/>";
+			return "<$this->tagName".$this->renderAttribute()."/>\n";
 			break;	
 		default:
 			$str = "";
@@ -200,7 +200,7 @@ class HTML{
 				$str .= $v->render();
 			}// next
 			if($this->tagName != ""){
-				return $this->html = "<$this->tagName".$this->renderAttribute().">".$str."</$this->tagName>";	
+				return $this->html = "<$this->tagName".$this->renderAttribute().">".$str."</$this->tagName>\n";	
 			}else{
 				return $this->html = $str;
 			}// end if

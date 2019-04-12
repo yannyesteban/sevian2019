@@ -411,14 +411,14 @@ class S{
 			
 			));
 			
-			$form = new HTML(array('tagName'=>'form', 'action'=>'', 'name'=>'form_p$panel', 'id'=>'form_p$panel', 'method'=> 'POST', 'enctype'=>'multipart/form-data'));
+			$form = new HTML(array('tagName'=>'form', 'action'=>'', 'name'=>"form_p$panel", 'id'=>'form_p$panel', 'method'=> 'POST', 'enctype'=>'multipart/form-data'));
 			$form->add($elem);
 			$form->add($aux);
 			
 			//self::setMainPanel($panel, "ImgDir", $elem->getMain());
 			
 			if(isset(self::$_strPanels[$panel])){
-				$div = new HTML(array('tagName'=>'div', 'id'=>'panel_p$panel'));
+				$div = new HTML(array('tagName'=>'div', 'id'=>"panel_p$panel"));
 				$div->add($form);
 				$str->addPanel($panel, $div);
 			}else{
@@ -431,7 +431,7 @@ class S{
 
 				$request[] = new InfoRequest(array(
 					'panel'		=> $panel,
-					'targetId'	=> 'panel_p$panel',
+					'targetId'	=> "panel_p$panel",
 					'html'		=> $form->render(),
 					'script'	=> $form->getScript(),
 					'css'		=> $form->getCss(),
@@ -608,19 +608,27 @@ class S{
 				self::setTemplate(self::$template);
 			}
 		}
+		/*
+		$template_x = self::evalTemplate();
+
 		
-		
-		$_body = self::evalTemplate()->render();
-		$_script = self::evalTemplate()->getScript();
-		$_css = self::evalTemplate()->getCss();
+if(1==0){
+	$_body = $template_x->render();
+		$_script = $template_x->getScript();
+		$_css = $template_x->getCss();
 		
 		$doc->appendCssStyle($_css);
 		$doc->appendScript($_script, true);
 		
 		$doc->body->text = $_body;
+}else{
+	$doc->body->appendChild($template_x);
+}
 		
+		*/
+
 		
-		//$doc->body->add(self::evalTemplate());
+		$doc->body->add(self::evalTemplate());
 				
 		$doc->appendScript(self::$script, true);
 		//hr(self::$_mainPanels, "green");
@@ -630,7 +638,7 @@ class S{
 		$doc->appendScript($script, true);
 		
 		return $doc->render();
-		
+		/* 
 		foreach($this->cssSheetsDefault as $v){
 			$doc->appendCssSheet($v);
 		}
@@ -671,7 +679,7 @@ class S{
 		
 		$doc->setTitle($sevian->title);
 		
-		return $doc->render();
+		return $doc->render(); */
 	}
 	public static function render(){
 		self::sessionInit();

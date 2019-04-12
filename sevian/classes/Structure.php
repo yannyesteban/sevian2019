@@ -36,7 +36,6 @@ class Structure extends HTML{
 	
 	public function render(){
 		$template = $this->template;
-		
 		foreach($this->_ele as $panel => $e){
 			$template = str_replace("--$panel--", $e->render(), $template);
 		}

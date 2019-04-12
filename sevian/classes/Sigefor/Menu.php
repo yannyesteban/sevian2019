@@ -3,46 +3,47 @@
 namespace Sevian\Sigefor;
 
 class Menu extends \Sevian\Panel{
+
 	
-	
-	public $title = "MENU 4.0";
+		public $title = "MENU 4.0";
     
     
     protected $tMenus = "_sg_menus";
     protected $tMenuItems = "_sg_menu_items";
+	
+		public function evalMethod($method = ''){
+		
+			echo(1/0);
+			//$this->loadForm();
+			$this->load();
+			
+			switch($method){
+					
+					
+				case 'load':
+					//$this->main = $this->load();
+					break;
+				case 'delete':
+					break;
+				case 'get_field_data':
+					break;
+					
+					
+					
+			}
+			
+		}
+		public function __construct($opt = array()){
+			
+			foreach($opt as $k => $v){
+				$this->$k = $v;
+			}
 
-    public function __construct($opt = array()){
-		echo(7.2);
-		foreach($opt as $k => $v){
-			$this->$k = $v;
+			$this->main = new \Sevian\HTML('div');
+
+			$this->cn = \Sevian\Connection::get();
 		}
-		
-		$this->main = new \Sevian\HTML('div');
-		
-		$this->cn = \Sevian\Connection::get();
-	}
-    public function evalMethod($method = ''){
-		
-		echo(1/0);
-		//$this->loadForm();
-		$this->load();
-		
-		switch($method){
-				
-				
-			case 'load':
-				//$this->main = $this->load();
-				break;
-			case 'delete':
-				break;
-			case 'get_field_data':
-				break;
-				
-				
-				
-		}
-		
-	}
+    
 
 
     private function load(){

@@ -21,7 +21,7 @@ class SgMenu extends Sevian\Panel{
 		
 		
 		$this->title .= " Panel($this->panel)";
-		return "($this->panel) $this->title ... El Menu".'<input type="submit" name="submit1" id="submit1" value="Enviar">';
+		return "($this->panel) $this->title ... El Menu->".'<input type="submit" name="submit1" id="submit1" value="Enviar">';
 		
 	}
 	

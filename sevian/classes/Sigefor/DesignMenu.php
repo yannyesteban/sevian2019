@@ -36,7 +36,7 @@ class DesignMenu extends Sevian\Panel{
 		$div2->class = "design";
 		$div->innerHTML = "HOLA";
 		
-		$this->script = "loadMenu();alert(9999)";
+		$this->script = "loadMenu();alert(9999);";
 		
 		$btn = new Sevian\HTML("input");
 		$btn->type = "button";
