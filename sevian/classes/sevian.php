@@ -212,6 +212,10 @@ class S{
 		self::$cfg = &$_SESSION;
 		self::$req = &$_REQUEST;
 		
+
+
+		
+
 		self::$ses = &self::$cfg['VSES'];
 		self::$onAjax = self::getReq('__sg_async');
 		
@@ -357,11 +361,69 @@ class S{
 		\Sevian\Tool::param($q, $params);
 		return $params;
 	}
-	
-	public static function evalParams(){
+	public static function sequence($seq){
+		
+		foreach($seq as $line){
+
+			foreach($line as $k => $v){
+			
+				$this->command($k, $v);
+			}
+		
+		}
+		
+	}
+	public static function command($cmd, $params){
+		
+		
+		
+		switch($cmd){
+			case "vses":
+				$this->_setVars($this->ses, $params);
+				break;			
+			case "vexp":
+				$this->_setVars($this->exp, $params);
+				break;	
+			case "vreq":
+				$this->_setVars($this->req, $params);
+				break;
+			case "set_params":
+				$this->params = array_merge($this->params, $this->cmd->get_param($value));
+				break;
+			case "setPanel":
+				$this->setPanel(new InfoParam($params), true);
+				break;
+			case "setMethod":
+				$this->evalMethod($params);
+				break;
+			case "iMethod":
+				$this->iMethod($params);
+				break;
+			case "signs":
+				$this->evalSigns($params);
+				break;
+			default:
+				if(isset($this->_commands[$cmd])){
+					$this->evalAction($cmd, $params);
+				}else if(is_string($params) and isset($this->_actions[$cmd][$params])){
+					$this->sequence($this->_actions[$cmd][$params]);
+				}
+				break;
+		}
+		
+	}
+	public static function evalParams(){echo 1;
+
+		$aux = '[
+			{"a":1},
+			{"B":3}
+
+		]';
+		self::$req["__sg_params"] = $aux;
+
 		if(isset(self::$req["__sg_params"]) and self::$req["__sg_params"] != ""){
 
-			self::$sequence(json_decode(self::$req["__sg_params"]));
+			self::sequence(json_decode(self::$req["__sg_params"]));
 			
 		}
 	}
