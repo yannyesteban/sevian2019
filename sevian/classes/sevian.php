@@ -362,9 +362,18 @@ class S{
 		return $params;
 	}
 	public static function sequence($seq){
-		
+		list($aa, $bb) = $seq;
+
+
+		hr( $bb, "red");
+		hr($bb["B"], "blue");
 		foreach($seq as $line){
 
+
+			print_r($line);continue;
+			list($aa, $bb) = $line;
+
+			hr("$aa $bb");
 			foreach($line as $k => $v){
 			
 				self::command($k, $v);
@@ -423,7 +432,7 @@ class S{
 
 		if(isset(self::$req["__sg_params"]) and self::$req["__sg_params"] != ""){
 
-			self::sequence(json_decode(self::$req["__sg_params"]));
+			self::sequence(json_decode(self::$req["__sg_params"], true));
 			
 		}
 	}
