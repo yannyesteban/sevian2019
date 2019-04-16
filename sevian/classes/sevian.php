@@ -367,7 +367,7 @@ class S{
 
 			foreach($line as $k => $v){
 			
-				$this->command($k, $v);
+				self::command($k, $v);
 			}
 		
 		}
@@ -403,10 +403,10 @@ class S{
 				$this->evalSigns($params);
 				break;
 			default:
-				if(isset($this->_commands[$cmd])){
-					$this->evalAction($cmd, $params);
-				}else if(is_string($params) and isset($this->_actions[$cmd][$params])){
-					$this->sequence($this->_actions[$cmd][$params]);
+				if(isset(self::_commands[$cmd])){
+					self::evalAction($cmd, $params);
+				}else if(is_string($params) and isset(self::_actions[$cmd][$params])){
+					self::sequence(self::_actions[$cmd][$params]);
 				}
 				break;
 		}
