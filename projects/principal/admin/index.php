@@ -8,6 +8,7 @@ include 'configuration/themes.php';
 include 'configuration/bd.php';
 include 'configuration/inputs.php';
 include 'configuration/elements.php';
+include 'configuration/actions.php';
 include 'configuration/commands.php';
 include 'configuration/css.php';
 include 'configuration/js.php';
