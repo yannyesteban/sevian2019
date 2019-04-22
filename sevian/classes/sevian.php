@@ -362,22 +362,12 @@ class S{
 		return $params;
 	}
 	public static function sequence($seq){
-		list($aa, $bb) = $seq;
 
-
-		hr( $bb, "red");
-		hr($bb["B"], "blue");
 		foreach($seq as $line){
 
-
-			print_r($line);continue;
-			list($aa, $bb) = $line;
-
-			hr("$aa $bb");
-			foreach($line as $k => $v){
 			
-				self::command($k, $v);
-			}
+			self::command(key($line), current(($line)));
+
 		
 		}
 		
@@ -388,7 +378,9 @@ class S{
 		
 		switch($cmd){
 			case "vses":
-				$this->_setVars($this->ses, $params);
+			
+				self::setSes(key($params), current($params));
+				hr(self::$ses["xc"]);
 				break;			
 			case "vexp":
 				$this->_setVars($this->exp, $params);
@@ -412,6 +404,7 @@ class S{
 				$this->evalSigns($params);
 				break;
 			default:
+				break;
 				if(isset(self::_commands[$cmd])){
 					self::evalAction($cmd, $params);
 				}else if(is_string($params) and isset(self::_actions[$cmd][$params])){
@@ -424,8 +417,9 @@ class S{
 	public static function evalParams(){echo 1;
 
 		$aux = '[
-			{"a":1},
-			{"B":3}
+			{"AA":"Yanny "},
+			{"BB":"Esteban "},
+			{"vses":{"xc":"Prueba 1"}}
 
 		]';
 		self::$req["__sg_params"] = $aux;
