@@ -5,6 +5,8 @@ include 'Connection.php';
 include 'HTML.php';
 include 'Document.php';
 include 'Structure.php';
+include 'interfaces.php';
+include 'Element.php';
 include 'Panel.php';
 
 include 'Input.php';
@@ -270,7 +272,7 @@ class S{
 			self::$_infoInputs = &self::$cfg['INFO_INPUTS'];
 			
 			self::$_info = &self::$cfg['INFO'];
-			self::$template = &self::$cfg['TEMPLATE'];
+			self::$_template = &self::$cfg['TEMPLATE'];
 			self::$_strPanels = &self::$cfg['STR_PANELS'];
 			
 			self::$_signs = &self::$cfg['LISTEN'];
@@ -300,10 +302,62 @@ class S{
 			self::sequence($opt['sequence']);
 		}
 		
-		self::evalParams();
-	}
-	public static function init($opt = []){
 		
+	}
+	public static function iMethod($params){
+		if($params['panel'] != '' and $params['panel'] != '0'){
+			$_info[$params['panel']]->method = 
+
+			if(($params['element'] ?? '') == ''){
+				$params['element'] = self::$_info[$params['panel']]->element;
+			}
+		
+			if(($params['name'] ?? '') == ''){
+				$params['name'] = self::$_info[$params['panel']]->name;
+			}
+		}
+
+	}
+	public static function evalMethod($params){
+		
+		if($params['panel'] != '' and $params['panel'] != '0'){
+			if(($params['element'] ?? '') == ''){
+				$params['element'] = self::$_info[$params['panel']]->element;
+			}
+		
+			if(($params['name'] ?? '') == ''){
+				$params['name'] = self::$_info[$params['panel']]->name;
+			}
+		}
+		
+
+		print_r(self::$_info);
+		$info = new InfoParam($params);
+		hr($info,"Red");
+	}
+
+	public static function init($opt = []){
+
+		$aux = '[
+			{"setMethod":{
+				"panel":8,
+				"element":"",
+				"name":"principal",
+				"method":"load"
+
+			}},
+			{"BB":"Esteban "},
+			{"vses":{"xc":"Prueba 1"}}
+
+		]';
+		self::$req["__sg_params"] = $aux;
+
+		self::evalParams();
+		print_r(self::$_info);
+		foreach(self::$_info as $panel => $e){
+
+			hr( $panel);
+		}
 	}
 
 	public static function addClassInput($name, $info){
@@ -395,7 +449,7 @@ class S{
 				$this->setPanel(new InfoParam($params), true);
 				break;
 			case "setMethod":
-				$this->evalMethod($params);
+				self::evalMethod($params);
 				break;
 			case "iMethod":
 				$this->iMethod($params);
@@ -414,15 +468,9 @@ class S{
 		}
 		
 	}
-	public static function evalParams(){echo 1;
+	public static function evalParams(){
 
-		$aux = '[
-			{"AA":"Yanny "},
-			{"BB":"Esteban "},
-			{"vses":{"xc":"Prueba 1"}}
-
-		]';
-		self::$req["__sg_params"] = $aux;
+		
 
 		if(isset(self::$req["__sg_params"]) and self::$req["__sg_params"] != ""){
 

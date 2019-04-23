@@ -31,6 +31,14 @@ $init = [
 			'designMode'=> true,
 			'fixed'		=> true,
 		],
+		[
+			'panel'		=> 8,
+			'element'	=> 'sgForm',
+			'name'		=> 'login',
+			'method'	=> 'request',
+			'designMode'=> true,
+			'fixed'		=> true,
+		],
 		/*
 		[
 			'panel'		=> 44,

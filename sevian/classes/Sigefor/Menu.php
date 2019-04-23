@@ -2,15 +2,20 @@
 
 namespace Sevian\Sigefor;
 
-class Menu extends \Sevian\Panel{
+class Menu extends \Sevian\Element implements \Sevian\DocElement{
 
 	
-		public $title = "MENU 4.0";
+		public $title = "MENU 5.0";
     
     
     protected $tMenus = "_sg_menus";
     protected $tMenuItems = "_sg_menu_items";
 	
+
+		public function getMain(){
+			return true;
+		}
+
 		public function evalMethod($method = ''){
 		
 			echo(1/0);
@@ -119,8 +124,18 @@ class Menu extends \Sevian\Panel{
 		));
 		 */
 		
+
+		$aux = ' {
+			async: false,
+			panel: 4,
+			
+			valid: false,
+			confirm: \'Seguro\',
+			params:{}}
+';
+
 		$this->title .= " Panel($this->panel)";
-		return "($this->panel) $this->title ... El Menu".'<input type="submit" name="submit1" id="submit1" value="Menu">';
+		return "($this->panel) $this->title ... El Menu".'<input type="button" name="submit1" id="submit1" value="Menu" onclick="sevian.send('.$aux.')">';
 		
 	}
 	

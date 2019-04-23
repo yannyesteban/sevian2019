@@ -285,6 +285,8 @@ var sevian = false;
 		},
 		
 		send: function(opt, obj){
+
+			
 			if(opt.confirm && !confirm(opt.confirm)){
 				return false;
 			}
