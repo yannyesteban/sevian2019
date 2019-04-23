@@ -306,15 +306,13 @@ class S{
 	}
 	public static function iMethod($params){
 		if($params['panel'] != '' and $params['panel'] != '0'){
-			$_info[$params['panel']]->method = 
+			$_info[$params['panel']]->method = $params['method'];
+			$_info[$params['panel']]->eparams = array_merge($_info[$params['panel']]->eparams, $params['eparams']);
+			
 
-			if(($params['element'] ?? '') == ''){
-				$params['element'] = self::$_info[$params['panel']]->element;
-			}
-		
-			if(($params['name'] ?? '') == ''){
-				$params['name'] = self::$_info[$params['panel']]->name;
-			}
+
+
+			
 		}
 
 	}
