@@ -2,22 +2,23 @@
 namespace Sevian;
 
 
-class Panel2{
+class Panel2 extends Element2{
 
 	public $css = "";
 	public $script = "";
 	public $html = "";
-
-	private $_config = [];
-	private $_main = false;
+	public $panel = "";
+	public $dinamic = true;
+	protected $_config = [];
+	protected $_main = false;
 	
 	public function render(){
 		if($this->dinamic){
 			$form = new HTML([
 				'tagName'=>'form',
 				'action'=>'',
-				'name'=>"form_p$panel",
-				'id'=>'form_p$panel',
+				'name'=>"form_p{$this->panel}",
+				'id'=>"form_p{$this->panel}",
 				'method'=> 'POST',
 				'enctype'=>'multipart/form-data'
 				]);
@@ -61,7 +62,7 @@ class Element2{
 	
 	static $_element = false;
 	
-	public $panel = false;
+	//public $panel = false;
 	public $element = "default";
 	public $name = "";
 	public $method = "";

@@ -2,7 +2,7 @@
 
 namespace Sevian\Sigefor;
 
-class Menu extends \Sevian\Element implements \Sevian\DocElement{
+class Menu extends \Sevian\Panel2 implements \Sevian\DocElement{
 
 	
 		public $title = "MENU 5.0";
@@ -16,9 +16,13 @@ class Menu extends \Sevian\Element implements \Sevian\DocElement{
 			return true;
 		}
 
-		public function evalMethod($method = ''){
+		public function evalMethod($method = false){
 		
-			echo(1/0);
+
+			if($method === false){
+				$method = $this->method;
+			}
+			
 			//$this->loadForm();
 			$this->load();
 			
@@ -52,6 +56,16 @@ class Menu extends \Sevian\Element implements \Sevian\DocElement{
 
 
     private function load(){
+
+
+
+			$div = new \Sevian\HTML("div");
+			$div->style = "color:white;background:blue;";
+			$div->innerHTML = "yanny";
+
+			$this->_main = $div;
+		
+			return;
 		
 		$cn = $this->cn;
 
@@ -61,7 +75,7 @@ class Menu extends \Sevian\Element implements \Sevian\DocElement{
 			WHERE menu = '$this->name'";
         
             
-        hr($query);
+        hr($cn->query);
 
 		$result = $cn->execute();
 		
@@ -111,7 +125,7 @@ class Menu extends \Sevian\Element implements \Sevian\DocElement{
 		
 	}
 
-	public function render(){
+	public function renderx(){
 		
 		global $sevian;
 /* 		
@@ -135,7 +149,7 @@ class Menu extends \Sevian\Element implements \Sevian\DocElement{
 ';
 
 		$this->title .= " Panel($this->panel)";
-		return "($this->panel) $this->title ... El Menu".'<input type="button" name="submit1" id="submit1" value="Menu" onclick="sevian.send('.$aux.')">';
+		return "<span style='color:white'>($this->panel) $this->title ... El Menu".'<input type="button" name="submit1" id="submit1" value="Menu" onclick="sevian.send('.$aux.')"></span>';
 		
 	}
 	

@@ -23,6 +23,7 @@ $init = [
 			'designMode'=> true,
 			'fixed'		=> true,
 		],
+		/*
 		[
 			'panel'		=> 4,
 			'element'	=> 'sgForm',
@@ -39,7 +40,7 @@ $init = [
 			'designMode'=> true,
 			'fixed'		=> true,
 		],
-		/*
+		
 		[
 			'panel'		=> 44,
 			'element'	=> 'menuD',

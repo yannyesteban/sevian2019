@@ -310,7 +310,7 @@ class S{
 		$info = new InfoParam($params);
 
 		
-		if($info->panel != '' and $info->panel != '0'){
+		if($info->panel != '' and $info->panel != '0' and self::$_info[$info->panel] ?? false){
 			
 			
 			//self::$_info[$info->panel]->method = $info->method;
@@ -391,7 +391,7 @@ class S{
 		
 
 		$aux = '[
-			{"setMethod":{
+			{"setMethodx":{
 				"panel":9,
 				"element":"sgForm",
 				"name":"login",
@@ -557,7 +557,18 @@ class S{
 				}
 			}
 		}
-		
+		foreach(self::$_info as $panel => $e){
+			self::resetPanelSigns($panel);
+			$elem = self::getElement($e); 
+
+
+			$elem->evalMethod();
+			$str->addPanel($panel, $elem);
+
+		}
+
+
+		return $str;
 		foreach(self::$_info as $panel => $e){
 			
 			self::resetPanelSigns($panel);
@@ -661,7 +672,7 @@ class S{
 		] ;
 	}
 	
-	private static function ($_vconfig){
+	private static function configInputs($_vconfig){
 		$div = new HTML('');
 		
 		foreach($_vconfig as $k => $v){
