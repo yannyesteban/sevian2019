@@ -45,7 +45,7 @@ class InfoField{
 
 }
 
-class Form extends \Sevian\Panel{
+class Form extends \Sevian\Panel implements \Sevian\UserAdmin{
 	public $form = false;
 	public $title = false;
 	public $class = false;
@@ -70,6 +70,11 @@ class Form extends \Sevian\Panel{
 	protected $tFormFields = "_sg_form_fields";
 	protected $_params = false;
 
+
+	public function login(){
+		echo 4;
+	}
+
 	public function __construct($opt = array()){
 		
 		foreach($opt as $k => $v){
@@ -81,7 +86,9 @@ class Form extends \Sevian\Panel{
 		$this->cn = \Sevian\Connection::get();
 	}
 	
-	
+	public function getMain(){
+		return $this->main;
+	}
 	public function evalMethod($method = ''){
 		
 		
@@ -126,7 +133,7 @@ class Form extends \Sevian\Panel{
 			FROM $this->tForms 
 			WHERE form = '$this->name'";
 		
-			$result = $cn->execute();
+		$result = $cn->execute();
 		
 		if($rs = $cn->getDataAssoc($result)){
 

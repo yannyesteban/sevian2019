@@ -16,7 +16,10 @@ class Structure extends HTML{
 		$this->_ele[$panel] = $e;
 		$this->add($e);
 	} 
-	
+	public function getElement($panel){
+		return $this->_ele[$panel];
+		
+	} 
 	public function getStrPanels($template = ""){
 		
 		if($template == ""){

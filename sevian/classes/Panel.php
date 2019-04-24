@@ -1,6 +1,191 @@
 <?php
 namespace Sevian;
 
+
+class Panel2{
+
+	public $css = "";
+	public $script = "";
+	public $html = "";
+
+	private $_config = [];
+	private $_main = false;
+	
+	public function render(){
+		if($this->dinamic){
+			$form = new HTML([
+				'tagName'=>'form',
+				'action'=>'',
+				'name'=>"form_p$panel",
+				'id'=>'form_p$panel',
+				'method'=> 'POST',
+				'enctype'=>'multipart/form-data'
+				]);
+			$form->add($this->_main);
+			$form->add($this->configInputs());
+			$this->html = $form->render();
+		}else{
+			$this->html = $this->_main->render();
+		}
+
+		return $this->html;
+	}
+	public function getCss(){
+		return $this->css; 
+	}
+	public function getScript(){
+		return $this->script; 
+	}
+	public function addConfig($config){
+
+		$this->_config = array_merge($this->_config, $config);
+	}
+	private function configInputs(){
+		$div = new HTML('');
+		
+		foreach($this->_config as $k => $v){
+			$input = $div->add(array(
+				'tagName'	=>	'input',
+				'type'		=>	'hidden',
+				'name'		=>	$k,
+				'value'		=>	$v
+			));
+		}
+	
+		return $div;
+		
+	}
+
+}
+class Element2{
+	
+	static $_element = false;
+	
+	public $panel = false;
+	public $element = "default";
+	public $name = "";
+	public $method = "";
+	public $eparams = array();
+
+	public $typePanel = "normal";
+	public $async = false;
+	public $updated = false;
+	public $title = "";
+	
+
+	private $onDesing = true;
+	private $onDebug = true;
+	
+	private $winParams = false;
+	
+	private $_signs = false;
+	private $_infoRequest = false;
+	
+	
+	static function setElementType(){
+		
+	}
+	
+	public function __construct($opt = array()){
+		
+		foreach($opt as $k => $v){
+			$this->$k = $v;
+		}
+		
+		
+	}
+	
+	public function evalMethod($method = false){
+		
+	}
+	
+	public function extraMethod($method = false){
+		
+	}
+	
+	public function design(){
+		
+	}
+	
+	
+	
+	private function getInfoRequest(){
+		
+		$info = new \InfoRequest();
+		
+		$info->panel = $this->panel;
+		$info->targetId = "";//$this->targetId;
+
+		$info->html = $this->html;
+		$info->script = $this->script;
+		$info->css = $this->css;
+		
+		$info->title = $this->title;
+		$info->typeAppend = 1;
+		$info->hidden = false;
+		$info->window = false;
+		
+		return $info;
+		
+	}
+	
+	public function request($method=false){
+		
+		if($method === false){
+			$method = $this->method;
+		}
+		
+		$this->evalMethod($method);
+		
+		return $this->getInfoRequest();
+		
+	}
+	
+	
+	
+	
+	public function setJsonPanel($info){
+		
+		$this->_JsonPanel = $info;
+	}
+	
+	public function getJsonPanel(){
+		
+		return $this->_JsonPanel;
+		
+		$opt = new stdClass;
+		$opt->panel = $this->getElemType(); 
+		$opt->panel = $this->panel; 
+		$opt->title = $this->title; 
+		
+		return $opt; 
+	}
+	
+	
+	
+	public function setWinParams($params){
+		$this->winParams = $params;
+	}
+	
+	public function getWinParams(){
+		return $this->winParams;
+	}
+	
+	public function addSing($sign){
+		return $this->_signs[] = $sign;
+	}
+	public function setSings($signs){
+		$this->_signs = $signs;
+	}
+	
+	public function getSings(){
+		return $this->_signs;
+	}
+	
+	
+}
+
+
 class Panel{
 	
 	static $_element = false;

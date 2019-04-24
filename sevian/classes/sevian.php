@@ -131,6 +131,7 @@ class S{
 	public static $_js = [];
 	private static $_css = [];
 	
+	private static $_str = false;
 	private static $_templates = false;
 	private static $_themes = [];
 	private static $_template = false;
@@ -305,56 +306,109 @@ class S{
 		
 	}
 	public static function iMethod($params){
-		if($params['panel'] != '' and $params['panel'] != '0'){
-			$_info[$params['panel']]->method = $params['method'];
-			$_info[$params['panel']]->eparams = array_merge($_info[$params['panel']]->eparams, $params['eparams']);
+
+		$info = new InfoParam($params);
+
+		
+		if($info->panel != '' and $info->panel != '0'){
+			
+			
+			//self::$_info[$info->panel]->method = $info->method;
+			
+			
+			self::$_info[$info->panel]->eparams = array_merge(self::$_info[$info->panel]->eparams, $info->eparams);
+			
+			$elem = self::getElement(self::$_info[$info->panel]); 
+			
+			$result = $elem->evalMethod($info->method);
+		
 			
 
 
-
-			
 		}
 
 	}
 	public static function evalMethod($params){
-		
-		if($params['panel'] != '' and $params['panel'] != '0'){
-			if(($params['element'] ?? '') == ''){
-				$params['element'] = self::$_info[$params['panel']]->element;
+		$info = new InfoParam($params);
+		if($info->panel != '' and $info->panel != '0'){
+			if($info->element == ''){
+				$info->element = self::$_info[$info->panel]->element;
 			}
-		
-			if(($params['name'] ?? '') == ''){
-				$params['name'] = self::$_info[$params['panel']]->name;
+			if($info->name == ''){
+				$info->name = self::$_info[$info->panel]->name;
+			}
+			$elem = self::getElement($info); 
+			
+			self::setPanel($info, true);
+			
+			$result = $elem->evalMethod($info->method);
+			
+			self::$_str->addPanel($info->panel, $elem);
+
+			if($elem instanceof \Sevian\Sigefor\Form){
+				hr("si","purple");
+			}
+			if($elem instanceof \Sevian\UserAdmin){
+				hr("ADMIN","purple");
+			}
+
+			if($elem->getMain()){
+
 			}
 		}
-		
+	
+	}
 
-		print_r(self::$_info);
-		$info = new InfoParam($params);
-		hr($info,"Red");
+	public static function _evalMethod($info){
+		$elem = self::getElement($info);
+		$result = $elem->evalMethod($info->method);
+		if($elem instanceof \Sevian\Sigefor\Form){
+			hr("si","purple");
+		}
+		if($elem instanceof \Sevian\UserAdmin){
+			hr("ADMIN","purple");
+		}
+		if($result){
+			self::setPanel($info, true);
+			if(!self::$onAjax){
+				self::$_str->addPanel($info->panel, $elem);
+
+				return $elem;
+			}
+		}
+		return false;
+
 	}
 
 	public static function init($opt = []){
 
+		if(!self::$req["__sg_async"]){
+			self::$_str = new Structure();
+
+
+		}
+
+		
+
 		$aux = '[
 			{"setMethod":{
-				"panel":8,
-				"element":"",
-				"name":"principal",
-				"method":"load"
+				"panel":9,
+				"element":"sgForm",
+				"name":"login",
+				"method":"request"
 
 			}},
-			{"BB":"Esteban "},
+			{"iMethod":{"panel":8, "method":"test","eparams":{"h":8}}},
 			{"vses":{"xc":"Prueba 1"}}
 
 		]';
 		self::$req["__sg_params"] = $aux;
 
 		self::evalParams();
-		print_r(self::$_info);
+		
 		foreach(self::$_info as $panel => $e){
 
-			hr( $panel);
+		
 		}
 	}
 
@@ -432,7 +486,7 @@ class S{
 			case "vses":
 			
 				self::setSes(key($params), current($params));
-				hr(self::$ses["xc"]);
+				
 				break;			
 			case "vexp":
 				$this->_setVars($this->exp, $params);
@@ -444,13 +498,13 @@ class S{
 				$this->params = array_merge($this->params, $this->cmd->get_param($value));
 				break;
 			case "setPanel":
-				$this->setPanel(new InfoParam($params), true);
+				self::setPanel(new InfoParam($params), true);
 				break;
 			case "setMethod":
 				self::evalMethod($params);
 				break;
 			case "iMethod":
-				$this->iMethod($params);
+				self::iMethod($params);
 				break;
 			case "signs":
 				$this->evalSigns($params);
@@ -491,7 +545,7 @@ class S{
 		
 		$request = false;
 		
-		$str = new Structure();
+		$str = self::$_str;//new Structure();
 		
 		$str->setTemplate(self::vars(self::getTemplate()));
 		
@@ -507,8 +561,13 @@ class S{
 		foreach(self::$_info as $panel => $e){
 			
 			self::resetPanelSigns($panel);
+			if($e->update){
+				hr($panel);
+				$elem = $str->getElement($panel);
+			}else{
+				$elem = self::getElement($e); 
+			}
 			
-			$elem = self::getElement($e); 
 			
 			$aux = self::configInputs(array(
 				'__sg_panel'	=>$panel,
@@ -602,7 +661,7 @@ class S{
 		] ;
 	}
 	
-	private static function configInputs($_vconfig){
+	private static function ($_vconfig){
 		$div = new HTML('');
 		
 		foreach($_vconfig as $k => $v){
