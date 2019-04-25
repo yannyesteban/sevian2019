@@ -365,5 +365,9 @@ class Panel{
 	
 		return $div;
 	}
+
+	public function addConfig($config=[]){
+		//hr($this->panel,"green");
+	}
 }
 ?>

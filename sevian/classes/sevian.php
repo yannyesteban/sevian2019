@@ -560,10 +560,19 @@ class S{
 		foreach(self::$_info as $panel => $e){
 			self::resetPanelSigns($panel);
 			$elem = self::getElement($e); 
-
+			$elem->addConfig([
+				'__sg_panel'	=>$panel,
+				'__sg_sw'		=>self::$cfg['SW'],
+				'__sg_sw2'		=>self::$cfg['SW'],
+				'__sg_ins'		=>self::$ins,
+				'__sg_params'	=>'',
+				'__sg_async'	=>'',
+				'__sg_action'	=>self::$lastAction,
+				'__sg_thread'	=>'']);
 
 			$elem->evalMethod();
 			$str->addPanel($panel, $elem);
+
 
 		}
 
