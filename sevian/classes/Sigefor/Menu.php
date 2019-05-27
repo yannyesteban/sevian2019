@@ -61,7 +61,7 @@ class Menu extends \Sevian\Panel2 implements \Sevian\DocElement{
 
 			$div = new \Sevian\HTML("div");
 			$div->style = "color:white;background:blue;";
-			$div->innerHTML = "TEST";
+			$div->innerHTML = "TEST 27 de MAYO de 2019";
 
 			$this->_main = $div;
 		
