@@ -16,7 +16,7 @@ class Menu extends \Sevian\Panel2 implements \Sevian\DocElement{
 			return true;
 		}
 
-		public function evalMethod($method = false){
+		public function evalMethod($method = false): bool{
 		
 
 			if($method === false){
@@ -40,7 +40,7 @@ class Menu extends \Sevian\Panel2 implements \Sevian\DocElement{
 					
 					
 			}
-			
+			return true;	
 		}
 		public function __construct($opt = array()){
 			

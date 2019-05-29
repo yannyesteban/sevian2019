@@ -1,5 +1,8 @@
 <?php
 namespace Sevian;
+
+include 'info.php';
+
 include 'Tool.php';
 include 'Connection.php';
 include 'HTML.php';
@@ -15,103 +18,9 @@ include 'Form.php';
 
 
 
-function hr($msg_x, $color_x='black',$back_x=''){
-	
-	//echo '**('.$GLOBALS['debug'].')**__';
-	
-	if(is_array($msg_x) or is_object($msg_x)){
-		
-		$msg_x = print_r($msg_x, true);
-	}
-	
-	
-	if(isset($_GET['ajax']) or isset($_POST['ajax'])){
-		$GLOBALS['debugN']++;
-		$GLOBALS['debug'] .= $GLOBALS['debugN'].': '.$msg_x.'\n';
-		
-		//echo $GLOBALS['debug'];
-		return;	
-		
-	}
-	
-	if ($color_x==''){
-		echo "<hr>$msg_x<hr>";
-	}else{
-		echo "<hr><span style=\"background-color:$back_x;color:$color_x;font-family:tahoma;font-size:9pt;font-weight:bold;\">$msg_x</span><hr>";
-	}// end if
-	
-}// end function
 
-class InfoWindow{
-	public $caption = false;
-	public $mode = 'custom';
-	public $width = '300px';
-	public $height = '300px';
-	public $visible = true;
-	public $className = false;
-	public $classImage = false;
-	public $icon = false;
-	
-	public function __construct($opt = array()){
-		foreach($opt as $k => $v){
-			if(property_exists($this, $k)){
-				$this->$k = $v;
-			}
-		}
-	}
-}
-class InfoRequest{
 
-	public $panel = false;
-	public $targetId = false;
-	public $html = false;
-	public $script = false;
-	public $css = false;
-	public $title = false;
-	public $typeAppend = 1;
-	public $hidden = false;
-	public $window = false;
-	
-	public function __construct($opt = array()){
-		foreach($opt as $k => $v){
-			$this->$k = $v;
-		}
-	}
-}
-class InfoParam{
-	public $panel = false;
-	public $element = '';
-	public $name = '';
-	public $method = '';
-	public $eparams = array();
-	public $async = false;
-	public $update = false;
-	public $debugMode = false;
-	public $designMode = false;
-	public $fixed = false;
-	
-	public function __construct($opt = array()){
-		foreach($opt as $k => $v){
-			if(property_exists($this, $k)){
-				$this->$k = $v;
-			}
-			
-		}
-	}
-}
-class InfoThemes{
-	
-	public $css = [];
-	public $js = [];
-	public $templates = [];
-	public function __construct($opt = array()){
-		foreach($opt as $k => $v){
-			if(property_exists($this, $k)){
-				$this->$k = $v;
-			}
-		}
-	}
-}
+
 class S{
 	public static $title = 'SEVIAN 2017.10';
 	public static $theme = [];
@@ -234,30 +143,31 @@ class S{
 			self::$cfg['STR_PANELS'] = &self::$_strPanels;
 			
 			self::$_infoClasses = self::$_elements;
-			
+			/*
 			if(isset($opt['clsInput'])){
 				self::$_infoInputs = $opt['clsInput'];
 			}
-			
-			
-			
-			foreach(self::$elements as $k => $e){
-				self::setPanel(new InfoParam($e));
-			}
-
-			
 			if(isset($opt['commands'])){
 				self::$_commands = $opt['commands'];
 			}
 			if(isset($opt['actions'])){
 				self::$_actions = $opt['actions'];
 			}
-			
-			
-			
+			if(isset($opt['commands'])){
+				self::$_commands = $opt['commands'];
+			}
+			if(isset($opt['actions'])){
+				self::$_actions = $opt['actions'];
+			}
 			if(isset($opt['signs'])){
 				self::$_signs = $opt['signs'];
 			}
+			*/
+			foreach(self::$elements as $k => $e){
+				self::setPanel(new InfoParam($e));
+			}
+
+			
 			self::$cfg['INFO_CLASSES'] = &self::$_infoClasses;
 			self::$cfg['INFO_INPUTS'] = &self::$_infoInputs;
 			self::$cfg['LISTEN_PANEL'] = &self::$_pSigns;
@@ -294,7 +204,7 @@ class S{
 		foreach(self::$_infoInputs as $name => $info){
 			self::setClassInput($name, $info);
 		}
-		
+		/*
 		if(self::$cfg['INIT'] and isset($opt['sequenceInit'])){
 			self::sequence($opt['sequenceInit']);
 		}
@@ -302,7 +212,7 @@ class S{
 		if(isset($opt['sequence'])){
 			self::sequence($opt['sequence']);
 		}
-		
+		*/
 		
 	}
 	public static function iMethod($params){
@@ -382,10 +292,8 @@ class S{
 
 	public static function init($opt = []){
 
-		if(!self::$req["__sg_async"]){
+		if(!self::$onAjax){
 			self::$_str = new Structure();
-
-
 		}
 
 		
@@ -404,12 +312,8 @@ class S{
 		]';
 		self::$req["__sg_params"] = $aux;
 
-		self::evalParams();
 		
-		foreach(self::$_info as $panel => $e){
-
 		
-		}
 	}
 
 	public static function addClassInput($name, $info){
@@ -538,6 +442,9 @@ class S{
 		return self::$_template;
 	}
 	public static function evalTemplate(){
+
+		return;
+
 		/*$div = new HTML('div');
 		$div->text = self::getTemplate();
 		return $div;
@@ -589,7 +496,7 @@ class S{
 			}
 			
 			
-			$aux = self::configInputs(array(
+			$aux = self::configInputs([
 				'__sg_panel'	=>$panel,
 				'__sg_sw'		=>self::$cfg['SW'],
 				'__sg_sw2'		=>self::$cfg['SW'],
@@ -599,27 +506,27 @@ class S{
 				'__sg_action'	=>self::$lastAction,
 				'__sg_thread'	=>''
 			
-			));
+			]);
 			
-			$form = new HTML(array('tagName'=>'form', 'action'=>'', 'name'=>"form_p$panel", 'id'=>'form_p$panel', 'method'=> 'POST', 'enctype'=>'multipart/form-data'));
+			$form = new HTML(['tagName'=>'form', 'action'=>'', 'name'=>"form_p$panel", 'id'=>'form_p$panel', 'method'=> 'POST', 'enctype'=>'multipart/form-data']);
 			$form->add($elem);
 			$form->add($aux);
 			
 			//self::setMainPanel($panel, "ImgDir", $elem->getMain());
 			
 			if(isset(self::$_strPanels[$panel])){
-				$div = new HTML(array('tagName'=>'div', 'id'=>"panel_p$panel"));
+				$div = new HTML(['tagName'=>'div', 'id'=>"panel_p$panel"]);
 				$div->add($form);
 				$str->addPanel($panel, $div);
 			}else{
 				
-				$win = new InfoWindow(array(
+				$win = new InfoWindow([
 					'caption'=>'hola $panel'	
-				));
+				]);
 
 				$elem->setWinParams($win);
 
-				$request[] = new InfoRequest(array(
+				$request[] = new InfoRequest([
 					'panel'		=> $panel,
 					'targetId'	=> "panel_p$panel",
 					'html'		=> $form->render(),
@@ -629,7 +536,7 @@ class S{
 					'hidden'	=> false,
 					'title'		=> $elem->title,
 					'window'	=> $elem->getWinParams(),
-				));
+				]);
 			}
 			
 		}
@@ -685,12 +592,12 @@ class S{
 		$div = new HTML('');
 		
 		foreach($_vconfig as $k => $v){
-			$input = $div->add(array(
+			$input = $div->add([
 				'tagName'	=>	'input',
 				'type'		=>	'hidden',
 				'name'		=>	$k,
 				'value'		=>	$v
-			));
+			]);
 		}
 	
 		return $div;
@@ -742,9 +649,13 @@ class S{
 			$info->update = $update;
 			self::$_info[$info->panel] = $info; 
 		}
-		
+		return $info;
 		
 	}
+	public static function getPanel($panel){
+		return self::$_info[$info->panel];
+	}
+
 	public static function resetPanelSigns($panel){
 		
 		if(isset(self::$_pSigns[$panel])){
@@ -817,8 +728,21 @@ if(1==0){
 		
 		*/
 
+		self::$_str->setTemplate(self::vars(self::getTemplate()));
 		
-		$doc->body->add(self::evalTemplate());
+		if(self::$_templateChanged){
+			self::$_strPanels = self::$_str->getStrPanels();
+			foreach(self::$_strPanels as $panel){
+				
+				if(!isset(self::$_info[$panel])){
+				
+					self::evalElement(self::setPanel(new InfoParam(['panel' => $panel])));
+				}
+			}
+		}
+		
+		
+		$doc->body->add(self::$_str);
 				
 		$doc->appendScript(self::$script, true);
 		//hr(self::$_mainPanels, "green");
@@ -871,11 +795,39 @@ if(1==0){
 		
 		return $doc->render(); */
 	}
+	public static function evalElement($info){
+		$elem = self::getElement($info); 
+		//self::resetPanelSigns($panel);
+		if($elem->evalMethod()===true){
+			$elem->addConfig([
+				'__sg_panel'	=>$info->panel,
+				'__sg_sw'		=>self::$cfg['SW'],
+				'__sg_sw2'		=>self::$cfg['SW'],
+				'__sg_ins'		=>self::$ins,
+				'__sg_params'	=>'',
+				'__sg_async'	=>'',
+				'__sg_action'	=>self::$lastAction,
+				'__sg_thread'	=>'']);
+
+			
+			self::$_str->addPanel($info->panel, $elem);
+
+
+		}
+	}
+	public static function evalElements(){
+		foreach(self::$_info as $panel => $e){
+			self::evalElement($e);
+		}
+	}
+
 	public static function render(){
 		self::sessionInit();
+
+		self::$onAjax = self::getReq('__sg_async');
 		self::init();
-		
-		
+		self::evalParams();
+		self::evalElements();
 		return self::htmlDoc();
 	}
 }

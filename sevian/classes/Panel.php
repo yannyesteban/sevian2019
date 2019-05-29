@@ -96,8 +96,8 @@ class Element2{
 		
 	}
 	
-	public function evalMethod($method = false){
-		
+	public function evalMethod($method = false): bool{
+		return true;
 	}
 	
 	public function extraMethod($method = false){
@@ -238,7 +238,7 @@ class Panel{
 	}
 	
 	public function evalMethod($method = false){
-		
+		return true;
 	}
 	
 	public function extraMethod($method = false){
