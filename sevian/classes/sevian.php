@@ -16,7 +16,9 @@ include 'Input.php';
 include 'Page.php';
 include 'Form.php';
 
-
+function targetId(){
+	return "Hooooola";
+}
 
 
 
@@ -812,6 +814,8 @@ if(1==0){
 			
 			self::$_str->addPanel($info->panel, $elem);
 
+			$elem->setCallTargetId("targetId");
+			echo $elem->getTargetId();
 
 		}
 	}

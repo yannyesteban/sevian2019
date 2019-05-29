@@ -183,6 +183,15 @@ class Element2{
 		return $this->_signs;
 	}
 	
+	public function setCallTargetId($fun){
+
+		$this->_f = $fun;
+	}
+	public function getTargetId(){
+		hr("---".$this->_f);
+		return call_user_func("\\".$this->_f,0);
+
+	}
 	
 }
 
@@ -368,6 +377,15 @@ class Panel{
 
 	public function addConfig($config=[]){
 		//hr($this->panel,"green");
+	}
+
+	public function setCallTargetId($fun){
+
+		$this->_f = $fun;
+	}
+	public function getTargetId(){
+		return $this->_f();
+
 	}
 }
 ?>
