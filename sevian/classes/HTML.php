@@ -1,10 +1,21 @@
 <?php
 /*****************************************************************
-creado: 18/12/2015 -> 0907/2017
-por: Yanny Nu�ez
-Versi�n: 1.0
+creado: 18/12/2015 -> 09/07/2017 (30/05/2019)
+por: Yanny Nuñez
+Versión: 1.0
 *****************************************************************/
 namespace Sevian;
+
+
+interface HTMLRender{
+
+	public function render();
+	public function getScript();
+	public function getCss();
+
+
+}
+
 
 class TextNode{
 	
@@ -69,7 +80,7 @@ class HTML{
 	public function appendChild($ele){
 
 		if(is_object($ele)){
-			/* el elemento que se agrega deber�a tener el metodo: ->render()*/
+			/* el elemento que se agrega debería tener el metodo: ->render()*/
 			return $this->_ele[] = $ele;
 		}else{
 			return $this->_ele[] = new TextNode($ele);
@@ -94,7 +105,7 @@ class HTML{
 	public function insertFirst($ele){
 		
 		if(is_object($ele)){
-			/* el elemento que se agrega deber�a tener el metodo: ->render()*/
+			/* el elemento que se agrega debería tener el metodo: ->render()*/
 			$ele_x = $ele;
 		}else{
 			$ele_x = new TextNode($ele);
@@ -121,7 +132,7 @@ class HTML{
 		
 	}// end function
 	
-	/*se optiene el �ltimo elemento hijo*/
+	/*se optiene el último elemento hijo*/
 	public function lastChild(){
 
 		$n = count($this->_ele)-1;
@@ -199,8 +210,14 @@ class HTML{
 			foreach($this->_ele as $v){
 				$str .= $v->render();
 			}// next
+
+			$script = "";
+			if(strtolower($this->tagName) == "body"){
+				$script = "<script>".$this->getScript()."</script>";
+			}
+			
 			if($this->tagName != ""){
-				return $this->html = "<$this->tagName".$this->renderAttribute().">".$str."</$this->tagName>\n";	
+				return $this->html = "<$this->tagName".$this->renderAttribute().">".$str.$script."</$this->tagName>\n";	
 			}else{
 				return $this->html = $str;
 			}// end if
@@ -227,8 +244,12 @@ class HTML{
 
 		$css = "";
 		
-		foreach($this->_ele as $obj){
+		foreach($this->_ele as $k=>$obj){
+			hr($this->_ele[$k]);
 			if(method_exists($obj, "getCss")){
+				if($obj->tagName??0!=0){
+					hr($obj->_tagName);
+				}
 				$css .= $obj->getCss();
 			}
 		}// next

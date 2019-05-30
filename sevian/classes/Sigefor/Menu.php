@@ -25,8 +25,12 @@ class Menu extends \Sevian\Panel2 implements \Sevian\DocElement{
 			
 			//$this->loadForm();
 			$this->load();
+			//$this->script = ";alert(88888);";
+
 			
 			switch($method){
+				case 'create':
+
 					
 					
 				case 'load':
@@ -55,8 +59,64 @@ class Menu extends \Sevian\Panel2 implements \Sevian\DocElement{
     
 
 
+		public function create(){
+			$menu = new MM();
+			$menu->caption = $this->caption;
+			$menu->type = $this->type;
+
+
+		}
+
     private function load(){
 
+
+			
+			$div = new \Sevian\HTML("div");
+			$div->style = "color:white;background:blue;";
+			//$div->innerHTML = "......";
+			$div->id = "que";
+
+			$div2 = new \Sevian\HTML("div");
+			$div->css = ".mmm{
+				color:purple;
+				background-color:white;
+				
+				}";
+			$div2->innerHTML = "oooo";
+			$div2->class = "mmm";
+			$div2->css .= ".n{
+				color:purple;
+				background-color:white;
+				
+				}";
+
+			$div->appendChild($div2);
+
+
+			$this->_main = $div;
+		
+			return;
+
+			$cn = $this->cn;
+
+			$cn->query = "
+				SELECT * 
+				FROM $this->tMenus 
+				WHERE menu = '$this->name'";
+					
+							
+					hr($cn->query);
+	
+			$result = $cn->execute();
+			
+			if($rs = $cn->getDataAssoc($result)){
+	
+				foreach($rs as $k => $v){
+					$this->$k = $v;
+					hr($v);
+				}
+				
+			}
 
 
 			$div = new \Sevian\HTML("div");

@@ -64,10 +64,11 @@ var sgMenu;
 		
 		this.onOpen = false;
 		this.onClose = false;
+		//this.onCheck = false;
 		
 		this.wCheck = false;
 		this.wIcon = false;
-	
+		this.useButton = false;
 		this.level = 0;
 	
 		this._checkOver = false;
@@ -126,7 +127,13 @@ var sgMenu;
 			this.setMode(this.mode);
 			
 			if(!this._item){
-				this._item = this._main.create("a");
+				if(this.useButton){
+					this._item = this._main.create("button");
+					this._item.prop("type", "button");
+				}else{
+					this._item = this._main.create("a");
+				}
+				
 			}
 			this._item.addClass("option").ds("sgMenuType", "option");
 			
@@ -158,11 +165,18 @@ var sgMenu;
 				this._check.get().disabled = this.disabled;
 				this._check.get().checked = this.checked;
 
-				if(this.oncheck){
+				if(this.onCheck){
+					
 					this._check.on("click", function(event){
-						ME.oncheck(this.checked, ME.index, ME.parent, ME.level, event);
+						ME.onCheck(this.checked, ME.index, ME.parent, ME.level, event);
 					});
 				}
+
+				this._check.on("click", function(event){ 
+					event.stopPropagation();
+					//event.cancelBubble = true; 
+					event.preventDefault()
+				});
 
 				this._check.on("mouseover", function(){ME._checkOver = true;});
 				this._check.on("mouseout", function(){ME._checkOver = false;});
@@ -366,6 +380,7 @@ var sgMenu;
 		this.lastMenuId = false;
 		this.wCheck = false;
 		this.wIcon = false;
+		this.useButton = false;
 		this.value = false;
 		
 		this.className = false;
@@ -519,7 +534,7 @@ var sgMenu;
 			return this._main;
 		},
 
-		setCaption:function(caption){
+		setCaption: function(caption){
 			
 			this.caption = caption;
 			
@@ -556,6 +571,9 @@ var sgMenu;
 				opt.mode = "open";
 			}
 			
+			if(this.useButton){
+				opt.useButton = true;
+			}
 			this._id++;
 			
 			var item = this._items[opt.index] = new Item(opt);
@@ -564,6 +582,8 @@ var sgMenu;
 			if(item.getCheck()){
 				item.getCheck().on("mouseover", function(){ME.active = true;});
 				item.getCheck().on("mouseout", function(){ME.active = false;});
+
+				
 			}
 			if(item.parent !== undefined && item.parent !== false){
 				

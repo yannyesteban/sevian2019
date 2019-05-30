@@ -11,7 +11,7 @@ class Panel2 extends Element2{
 	public $dinamic = true;
 	protected $_config = [];
 	protected $_main = false;
-	
+	public $_f;
 	public function render(){
 		if($this->dinamic){
 			$form = new HTML([
@@ -183,15 +183,7 @@ class Element2{
 		return $this->_signs;
 	}
 	
-	public function setCallTargetId($fun){
-
-		$this->_f = $fun;
-	}
-	public function getTargetId(){
-		hr("---".$this->_f);
-		return call_user_func("\\".$this->_f,0);
-
-	}
+	
 	
 }
 
@@ -379,13 +371,5 @@ class Panel{
 		//hr($this->panel,"green");
 	}
 
-	public function setCallTargetId($fun){
-
-		$this->_f = $fun;
-	}
-	public function getTargetId(){
-		return $this->_f();
-
-	}
 }
 ?>

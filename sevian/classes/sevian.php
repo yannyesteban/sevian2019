@@ -16,8 +16,8 @@ include 'Input.php';
 include 'Page.php';
 include 'Form.php';
 
-function targetId(){
-	return "Hooooola";
+function targetId($nombre=""){
+	return "Hooooola: $nombre";
 }
 
 
@@ -68,7 +68,7 @@ class S{
 	private static $_mainPanels = [];
 	
 	private static $lastAction = false;
-	
+	private static $lamda = false;
 	public static function setSes($key, $value){
 		self::$ses[$key] = $value;
 	}
@@ -110,7 +110,12 @@ class S{
 		}
 	}
 	public static function sessionInit(){
-		
+		self::$lamda = function($nombre){
+			static $i=0;
+			$i++;
+			echo $i;
+			return $i;
+		};
 		
 		
 		
@@ -294,25 +299,13 @@ class S{
 
 	public static function init($opt = []){
 
+		self::$onAjax = self::getReq('__sg_async');
+
 		if(!self::$onAjax){
 			self::$_str = new Structure();
 		}
 
-		
-
-		$aux = '[
-			{"setMethodx":{
-				"panel":9,
-				"element":"sgForm",
-				"name":"login",
-				"method":"request"
-
-			}},
-			{"iMethod":{"panel":8, "method":"test","eparams":{"h":8}}},
-			{"vses":{"xc":"Prueba 1"}}
-
-		]';
-		self::$req["__sg_params"] = $aux;
+	
 
 		
 		
@@ -427,7 +420,21 @@ class S{
 		
 	}
 	public static function evalParams(){
+	
 
+		$aux = '[
+			{"setMethodx":{
+				"panel":9,
+				"element":"sgForm",
+				"name":"login",
+				"method":"request"
+
+			}},
+			{"iMethod":{"panel":8, "method":"test","eparams":{"h":8}}},
+			{"vses":{"xc":"Prueba 1"}}
+
+		]';
+		self::$req["__sg_params"] = $aux;
 		
 
 		if(isset(self::$req["__sg_params"]) and self::$req["__sg_params"] != ""){
@@ -688,7 +695,7 @@ class S{
 			$doc->appendCssSheet($v);
 		}
 		foreach(self::$_js as $k=> $v){
-			$doc->appendScriptDoc($v['file'], false);
+			$doc->appendScriptDoc($v['file'], $v['begin']);
 		}
 
 		$templates = [];
@@ -800,7 +807,9 @@ if(1==0){
 	public static function evalElement($info){
 		$elem = self::getElement($info); 
 		//self::resetPanelSigns($panel);
+		
 		if($elem->evalMethod()===true){
+			
 			$elem->addConfig([
 				'__sg_panel'	=>$info->panel,
 				'__sg_sw'		=>self::$cfg['SW'],
@@ -814,11 +823,13 @@ if(1==0){
 			
 			self::$_str->addPanel($info->panel, $elem);
 
-			$elem->setCallTargetId("targetId");
-			echo $elem->getTargetId();
+
+
+
 
 		}
 	}
+	
 	public static function evalElements(){
 		foreach(self::$_info as $panel => $e){
 			self::evalElement($e);
@@ -826,12 +837,15 @@ if(1==0){
 	}
 
 	public static function render(){
+		//1.-
 		self::sessionInit();
-
-		self::$onAjax = self::getReq('__sg_async');
+		//2.-
 		self::init();
+		//3.-
 		self::evalParams();
+		//4.-
 		self::evalElements();
+		//5.-
 		return self::htmlDoc();
 	}
 }

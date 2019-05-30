@@ -76,7 +76,7 @@ class Document{
 		$link->rel = "stylesheet";
 		$link->type = "text/css";
 		$this->head->appendChild($link);
-		$this->head->appendChild("\n");
+		//$this->head->appendChild("\n");
 	}
 	
 	public function appendCssStyle($css=""){
@@ -93,10 +93,12 @@ class Document{
 		$doc->src = $src;		
 		if(!$toEnd){
 			$this->head->appendChild($doc);
-			$this->head->appendChild("\n");			
+			//$this->head->appendChild("\n");			
 		}else{
 			$this->scriptDocEnd->appendChild($doc);
-			$this->scriptDocEnd->appendChild("\n");		
+			//$this->scriptDocEnd->appendChild("\n");
+			//$this->body->appendChild($doc);
+			//$this->body->appendChild("\n");			
 		}
 	}// end function
 
@@ -128,11 +130,13 @@ class Document{
 				}
 
 				$html = new HTML("html");
-
-				$body = $this->body->render();
+				$this->body->appendChild($this->scriptDocEnd);
+				$this->body->appendChild($this->scriptEnd);
+				
 				
 				$this->appendCssStyle($this->body->getCss());
-				$this->appendScript($this->body->getScript(), true);
+				$this->body->render();
+				hr($this->body->getCss());
 				
 				$this->head->appendChild($this->style);
 				$this->head->appendChild("\n");
@@ -141,10 +145,9 @@ class Document{
 				$html->appendChild("\n");
 				$html->appendChild($this->head);
 				$html->appendChild("\n");
-				$html->appendChild($body);
-				$html->appendChild("\n");
-				$html->appendChild($this->scriptDocEnd);
-				$html->appendChild($this->scriptEnd);
+				$html->appendChild($this->body);
+				
+				
 				$html->appendChild("\n");
 
 				return $this->doctype."\n".$html->render();

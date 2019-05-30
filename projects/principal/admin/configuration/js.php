@@ -45,6 +45,10 @@ $js = [
 	[
 		'file' 	=> "{$PATH}js/Sevian/Form.js",
 		'begin'	=> false],
+
+	[
+		'file' 	=> "{$PATH}js/Sevian/proyecto.js",
+		'begin'	=> true],
 	
 ];
 
