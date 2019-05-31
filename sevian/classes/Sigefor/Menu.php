@@ -83,6 +83,14 @@ class Menu extends \Sevian\Panel2 implements \Sevian\DocElement{
 				"caption"=>"dos",
 				"action"=>"alert(this.caption);",
 			];
+			$opt["items"][] = [
+				"caption"=>"Tres",
+				"action"=>"alert(this.caption);",
+			];
+			$opt["items"][] = [
+				"caption"=>"IV",
+				"action"=>"alert(this.caption);",
+			];
 
 			//$info = new \Sevian\InfoMenu();
 
