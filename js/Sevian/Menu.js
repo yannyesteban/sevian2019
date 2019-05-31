@@ -30,7 +30,7 @@ var sgMenu;
 	var Item = function(opt){
 		
 		this.main = false;
-		this.title = "";
+		this.caption = "";
 		
 		
 		
@@ -175,7 +175,7 @@ var sgMenu;
 				this._check.on("click", function(event){ 
 					event.stopPropagation();
 					//event.cancelBubble = true; 
-					event.preventDefault()
+					event.preventDefault();
 				});
 
 				this._check.on("mouseover", function(){ME._checkOver = true;});
@@ -374,6 +374,7 @@ var sgMenu;
 	
 	var Menu = function(opt){
 		this.id = "";
+		this.target = false;
 		this.type = "normal";
 		this.mode = "default";
 		this.caption = false;

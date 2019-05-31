@@ -245,11 +245,7 @@ class HTML{
 		$css = "";
 		
 		foreach($this->_ele as $k=>$obj){
-			hr($this->_ele[$k]);
 			if(method_exists($obj, "getCss")){
-				if($obj->tagName??0!=0){
-					hr($obj->_tagName);
-				}
 				$css .= $obj->getCss();
 			}
 		}// next

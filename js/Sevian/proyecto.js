@@ -1,5 +1,5 @@
 
-
+function fds(){
 var menu1 = new Sevian.Menu({
     target:"que",
     caption:"que menu",
@@ -41,3 +41,5 @@ menu1.add({
     //onCheck:"alert('todo');",
     
 });
+
+};

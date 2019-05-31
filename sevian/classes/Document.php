@@ -136,8 +136,7 @@ class Document{
 				
 				$this->appendCssStyle($this->body->getCss());
 				$this->body->render();
-				hr($this->body->getCss());
-				
+								
 				$this->head->appendChild($this->style);
 				$this->head->appendChild("\n");
 				$this->head->appendChild($this->script);

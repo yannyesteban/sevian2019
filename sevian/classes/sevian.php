@@ -6,6 +6,9 @@ include 'info.php';
 include 'Tool.php';
 include 'Connection.php';
 include 'HTML.php';
+
+include 'Menu.php';
+
 include 'Document.php';
 include 'Structure.php';
 include 'interfaces.php';

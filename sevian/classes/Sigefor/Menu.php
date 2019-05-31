@@ -68,7 +68,30 @@ class Menu extends \Sevian\Panel2 implements \Sevian\DocElement{
 		}
 
     private function load(){
+			//$opt["id"] = "hola";
+			$opt["target"] = "hola";
+			$opt["type"] = "accordion";
+			$opt["mode"] = "close";
+			
 
+			$opt["caption"] = "Menú Principal";
+
+			$opt["items"][] = [
+				"caption"=>"one",
+			];
+			$opt["items"][] = [
+				"caption"=>"dos",
+				"action"=>"alert(this.caption);",
+			];
+
+			//$info = new \Sevian\InfoMenu();
+
+			$menu = new \Sevian\Menu($opt);
+			$menu->class = "uva";
+
+			$this->_main = $menu;
+		
+			return;
 
 			
 			$div = new \Sevian\HTML("div");

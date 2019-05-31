@@ -28,7 +28,7 @@ class Panel2 extends Element2{
 		}else{
 			$this->html = $this->_main->render();
 		}
-
+		$this->script = $this->_main->getScript();
 		return $this->html;
 	}
 	public function getCss(){
