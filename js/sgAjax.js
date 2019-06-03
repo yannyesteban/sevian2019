@@ -21,7 +21,7 @@ var SgAjax = (function($){
 				if(!target.get()){
 					target = $("").create({
 						tagName: "div",
-						style:{display:"none"},
+						style: {display:"none"},
 						id: opt.targetId
 					});
 					opt.hidden = true;

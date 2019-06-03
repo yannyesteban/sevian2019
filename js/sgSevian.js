@@ -6,9 +6,8 @@ por: Yanny Nuñez
 Version: 1.0
 *****************************************************************/
 
-if(!Sevian){
-	var Sevian = {};
-}
+
+
 
 var sevian = false;
 
@@ -500,4 +499,13 @@ var sevian = false;
 	
 	namespace.action = sevian;
 	
-})(Sevian, _sgQuery, sgWindow)
+})(Sevian, _sgQuery, sgWindow);
+
+
+var T = {
+
+	fun: "Menu",
+	params:{}
+
+
+};

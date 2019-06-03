@@ -759,7 +759,7 @@ if(1==0){
 		$doc->appendScript(self::$script, true);
 		//hr(self::$_mainPanels, "green");
 		$json = json_encode(self::$_mainPanels, JSON_PRETTY_PRINT);
-		$script = "sevian.loadPanels($json)";
+		$script = "//Sevian.loadPanels($json)";
 		
 		$doc->appendScript($script, true);
 		

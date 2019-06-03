@@ -1,4 +1,19 @@
 
+
+var Modulo = (function(){
+    U=1000;
+    function X(){
+        alert(U);
+    }
+
+
+    return {
+        W:X
+    }
+})();
+
+
+
 function fds(){
 var menu1 = new Sevian.Menu({
     target:"que",
