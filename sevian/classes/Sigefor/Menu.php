@@ -4,13 +4,18 @@ namespace Sevian\Sigefor;
 
 class Menu extends \Sevian\Panel2 implements \Sevian\DocElement{
 
-	
+		public $menu = "";
 		public $title = "MENU 5.0";
-    
+		public $class = "";
+		public $params = "";
+		public $config = [];
+		public $_menu = [];
     
     protected $tMenus = "_sg_menus";
     protected $tMenuItems = "_sg_menu_items";
 	
+   
+		//private $_config = [];
 
 		public function getMain(){
 			return true;
@@ -68,65 +73,74 @@ class Menu extends \Sevian\Panel2 implements \Sevian\DocElement{
 		}
 
     private function load(){
+
+			$this->loadCfgMenu();
+
+			$opt = $this->_menu;
 			//$opt["id"] = "hola";
-			$opt["target"] = "hola";
-			$opt["type"] = "accordion";
-			$opt["mode"] = "close";
+
+			//$opt["target"] = "hola";
+			//$opt["type"] = "accordion";
+			//$opt["mode"] = "close";
 			
 
-			$opt["caption"] = "Menú Principal";
-
+			//$opt["caption"] = "Menú Principal";
+/*
 			$opt["items"][] = [
 				"caption"=>"one",
+				"index"=>0,
+				"parent"=>false,
+
 			];
 			$opt["items"][] = [
 				"caption"=>"dos",
 				"action"=>"alert(this.caption);",
+				"index"=>1,
+				"parent"=>false,
 			];
 			$opt["items"][] = [
 				"caption"=>"Tres",
-				"action"=>"alert(this.caption);",
+				//"action"=>"alert(this.caption);",
+				"index"=>2,
+				"parent"=>false,
 			];
 			$opt["items"][] = [
 				"caption"=>"IV",
-				"action"=>"alert(this.caption);",
+				//"action"=>"alert(this.caption);",
+				"index"=>3,
+				"parent"=>false,
 			];
 
+			$opt["items"][] = [
+				"caption"=>"Cinco",
+				"action"=>"alert(this.caption);",
+				"index"=>4,
+				"parent"=>2,
+			];
+			$opt["items"][] = [
+				"caption"=>"Seis",
+				"action"=>"alert(this.caption);",
+				"index"=>5,
+				"parent"=>2,
+			];
+			$opt["items"][] = [
+				"caption"=>"Siete",
+				"action"=>"alert(this.caption);",
+				"index"=>6,
+				"parent"=>2,
+			];
+*/
 			//$info = new \Sevian\InfoMenu();
 
 			$menu = new \Sevian\Menu($opt);
-			$menu->class = "uva";
+			//$menu->class = "uva";
 
 			$this->_main = $menu;
-		
+	
 			return;
 
 			
-			$div = new \Sevian\HTML("div");
-			$div->style = "color:white;background:blue;";
-			//$div->innerHTML = "......";
-			$div->id = "que";
-
-			$div2 = new \Sevian\HTML("div");
-			$div->css = ".mmm{
-				color:purple;
-				background-color:white;
-				
-				}";
-			$div2->innerHTML = "oooo";
-			$div2->class = "mmm";
-			$div2->css .= ".n{
-				color:purple;
-				background-color:white;
-				
-				}";
-
-			$div->appendChild($div2);
-
-
-			$this->_main = $div;
-		
-			return;
+			
 
 			$cn = $this->cn;
 
@@ -204,7 +218,7 @@ class Menu extends \Sevian\Panel2 implements \Sevian\DocElement{
 
 		$result = $cn->execute($q);
 
-		while($rs = $cn->getDataAssoc($result)){
+		if($rs = $cn->getDataAssoc($result)){
 			if(isset($this->fields[$rs['field']])){
 				$this->fields[$rs['field']]->update($rs);
 			}
@@ -216,6 +230,74 @@ class Menu extends \Sevian\Panel2 implements \Sevian\DocElement{
 		
 	}
 
+	private function loadCfgMenu(){
+
+		$cn = $this->cn;
+
+		$cn->query = "
+			SELECT * 
+			FROM $this->tMenus 
+			WHERE menu = '$this->name'";
+        
+            
+       
+
+		$result = $cn->execute();
+		
+		if($rs = $cn->getDataAssoc($result)){
+
+			foreach($rs as $k => $v){
+				$this->$k = $v;
+			}
+
+			$this->_menu = (array)json_decode($this->config);
+			$this->_menu["caption"] = $this->_config["caption"]??$this->title;
+			$this->_menu["class"] = $this->_config["class"] ?? $this->class;
+
+			
+			$this->loadCfgItems();
+		//	print_r($this->_config);
+		}
+
+	}
+
+	public function loadCfgItems(){
+		$cn = $this->cn;
+
+		$cn->query = "
+			SELECT * 
+			FROM $this->tMenuItems 
+			WHERE menu = '$this->name'";
+        
+            
+       
+
+		$result = $cn->execute();
+		$opt = [];
+		while($rs = $cn->getDataAssoc($result)){
+
+			foreach($rs as $k => $v){
+			//	$this->$k = $v;
+			}
+			$opt[] = [
+				"caption" => $rs["title"],
+				"index" => $rs["index"],
+				"parent" => $rs["parent"],
+			//	"action" => $rs["action"],
+				
+
+
+
+			];
+			
+			
+
+		
+		}
+		$this->_menu["items"] = $opt;
+	//	print_r($this->_menu);
+
+	}
 	public function renderx(){
 		
 		global $sevian;

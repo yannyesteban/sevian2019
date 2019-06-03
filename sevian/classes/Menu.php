@@ -3,6 +3,9 @@
 namespace Sevian;
 class InfoMenuItem{
 
+    public $index = false;
+    public $parent = false;
+    public $action = false;
     public $caption = false;
     public $className = false;
     public $classImage = false;
@@ -37,10 +40,7 @@ class InfoMenuItem{
 	public function __construct($opt = []){
 		foreach($opt as $k => $v){
 
-            if($k == 'class'){
-                $k = 'className';
-            }
-            
+                     
 			$this->$k = $v;
 		}
 	}
@@ -56,7 +56,7 @@ class InfoMenu{
 	public $wIcon = false;
 	public $useButton = false;
 	public $value = false;
-    public $class = false;
+    public $className = false;
     public $oncheck = false;
 
     public $items = [];
@@ -64,9 +64,7 @@ class InfoMenu{
 	public function __construct($opt = []){
 		foreach($opt as $k => $v){
 
-            if($k == 'class'){
-                $k = 'classname';
-            }
+           
 
             if($k== 'items'){
                 foreach($v as $item){
@@ -98,6 +96,10 @@ class Menu extends HTML{
         if($this->infoMenu->target){
             $this->id = $this->infoMenu->target;
         }
+        if($opt["class"] ?? false !== false){
+            $this->class = $opt["class"];
+        }
+
     }
 
     public function setCaption($caption){
@@ -105,6 +107,7 @@ class Menu extends HTML{
     }
 
     public function add($item){
+        
         if($item instanceof \Sevian\InfoMenuItem){
             $this->infoMenu->items[] = $item;
         }else{

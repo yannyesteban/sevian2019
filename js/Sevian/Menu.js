@@ -600,14 +600,13 @@ var sgMenu;
 					parent.createMenu(this.type === "default" || this.type === "system", this.class);
 					parent.getItem().on("mouseover", function(){ME.active = true;});
 					parent.getItem().on("mouseout", function(){ME.active = false;});
-					
 
 					parent.getItem().on("click", function(){
 						if(ME.type !== "default" && ME.type !== "system"){
 							ME.lastMenuId = item.parent;
 						}
 					}.bind(parent));
-					
+
 					parent.getItem().on("click", this._showMenu(this.type).bind(parent));
 				}
 								

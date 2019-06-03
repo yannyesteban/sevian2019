@@ -9,7 +9,7 @@ Version: 1.0
 
 
 
-var sevian = false;
+var Sevian = false;
 
 
 
@@ -497,7 +497,7 @@ var sevian = false;
 	];
 	//alert(info[0].setPanel.name);	
 	
-	namespace.action = sevian;
+	namespace.action = Sevian;
 	
 })(Sevian, _sgQuery, sgWindow);
 
