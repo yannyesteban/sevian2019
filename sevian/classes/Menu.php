@@ -116,7 +116,7 @@ class Menu extends HTML{
     }
 
     public function getScript(){
-        $json = json_encode($this->infoMenu);
+        $json = json_encode($this->infoMenu, JSON_PRETTY_PRINT);
         $this->script ="new Sevian.Menu($json)";
        
         $script = parent::getScript();

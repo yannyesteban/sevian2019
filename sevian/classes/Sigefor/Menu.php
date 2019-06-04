@@ -279,11 +279,18 @@ class Menu extends \Sevian\Panel2 implements \Sevian\DocElement{
 			foreach($rs as $k => $v){
 			//	$this->$k = $v;
 			}
+			if($rs["action"]){
+				$action = "Sevian.send(".$rs["action"].");";
+			}else{
+				$action = "";
+			}
+			
 			$opt[] = [
 				"caption" => $rs["title"],
 				"index" => $rs["index"],
 				"parent" => $rs["parent"],
-			//	"action" => $rs["action"],
+				"action" => $action,
+				
 				
 
 

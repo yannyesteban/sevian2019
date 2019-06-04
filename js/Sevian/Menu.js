@@ -586,9 +586,9 @@ var sgMenu;
 
 				
 			}
-			if(item.parent !== undefined && item.parent !== false){
+			if(item.parent !== null && item.parent !== undefined && item.parent !== false){
 				
-				
+			
 				var parent = menu = this._items[item.parent];
 				
 				if(parent.disabled){
