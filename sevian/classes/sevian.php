@@ -184,7 +184,9 @@ class S{
 			self::$cfg['LISTEN'] = &self::$_signs;
 			self::$cfg['COMMANDS'] = &self::$_commands;
 			self::$cfg['ACTIONS'] = &self::$_actions;
+			self::$cfg['INFO'] = &self::$_info;
 		}else{
+			
 			self::$cfg['INIT'] = false;
 			
 			self::$cfg['SW'] = (self::$cfg['SW'] == '1')? '0': '1';
@@ -371,10 +373,13 @@ class S{
 	}
 	public static function sequence($seq){
 
+//		foreach($seq as $cmd => $params){
+
 		foreach($seq as $line){
 
 			
 			self::command(key($line), current(($line)));
+			//self::command($cmd, $params);
 
 		
 		}
@@ -403,7 +408,9 @@ class S{
 				self::setPanel(new InfoParam($params), true);
 				break;
 			case "setMethod":
+				
 				self::evalMethod($params);
+				
 				break;
 			case "iMethod":
 				self::iMethod($params);
@@ -437,7 +444,7 @@ class S{
 			{"vses":{"xc":"Prueba 1"}}
 
 		]';
-		self::$req["__sg_params"] = $aux;
+		//self::$req["__sg_params"] = $aux;
 		
 
 		if(isset(self::$req["__sg_params"]) and self::$req["__sg_params"] != ""){
@@ -648,7 +655,7 @@ class S{
 			
 		}else{
 		
-			$obj = new Panel($info);
+			$obj = new Panel2($info);
 			
 		}
 		return $obj;

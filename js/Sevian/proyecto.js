@@ -1,5 +1,29 @@
 
 
+
+var xx ={
+	async: false,
+	panel:4,
+	valid:true,
+	confirm: 'seguro?',
+	params:	[
+		{setMethod:{
+			panel:4,
+			element:'test5',
+			method:'request',
+			name:'personas'
+		}},
+		{setMethod:{
+			panel:8,
+			element:'test4',
+			method:'request',
+			name:'personas'
+		}}
+	]
+};
+
+
+
 var Modulo = (function(){
     U=1000;
     function X(){

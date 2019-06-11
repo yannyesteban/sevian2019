@@ -28,8 +28,13 @@ $cls_elements = [
 	'menu' 		=> [
 		'file' 	=> 'Sigefor/Menu.php',
 		'class' => '\Sevian\Sigefor\Menu'],		
-	
-];
+	'test4' 		=> [
+		'file' 	=> 'Sigefor/Menu.php',
+		'class' => '\Sevian\Sigefor\Test4'],	
+	'test5' 		=> [
+		'file' 	=> 'Sigefor/Menu.php',
+		'class' => '\Sevian\Sigefor\Test5'],
+	];
 
 Sevian\S::elementsLoad($cls_elements);
 

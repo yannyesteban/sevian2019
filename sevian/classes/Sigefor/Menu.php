@@ -280,7 +280,7 @@ class Menu extends \Sevian\Panel2 implements \Sevian\DocElement{
 			//	$this->$k = $v;
 			}
 			if($rs["action"]){
-				$action = "Sevian.send(".$rs["action"].");";
+				$action = "Sevian.action.send(".$rs["action"].");";
 			}else{
 				$action = "";
 			}
@@ -336,4 +336,37 @@ class Menu extends \Sevian\Panel2 implements \Sevian\DocElement{
 }
 
 
+
+class Test4 extends \Sevian\Panel2 {
+	public function __construct($opt = []){
+			
+		foreach($opt as $k => $v){
+			$this->$k = $v;
+		}
+
+		$this->_main = new \Sevian\HTML('div');
+		$this->_main->style = "color:red";
+		$this->_main->innerHTML = "alpha";
+	}
+
+
+
+}
+class Test5 extends \Sevian\Panel2 {
+	public function __construct($opt = []){
+			
+		foreach($opt as $k => $v){
+			$this->$k = $v;
+		}
+
+		$this->_main = new \Sevian\HTML('div');
+		$this->_main->style = "color:red";
+		$this->_main->innerHTML = "betha";
+	}
+
+
+	public function getMain(){
+		return true;
+	}
+}
 ?>

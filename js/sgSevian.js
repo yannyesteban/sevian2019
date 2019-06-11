@@ -9,8 +9,9 @@ Version: 1.0
 
 
 
-var Sevian = false;
-
+if(!Sevian){
+	var Sevian = {};
+}
 
 
 (function(namespace, $, sgWindow){
@@ -350,10 +351,10 @@ var Sevian = false;
 
 					},
 					waitLayer:{
-						class:"wait",
+						class: "wait",
 						target: f,
-						message:false,
-						icon:""},
+						message: false,
+						icon: ""},
 
 				});				
 				
@@ -497,7 +498,7 @@ var Sevian = false;
 	];
 	//alert(info[0].setPanel.name);	
 	
-	namespace.action = Sevian;
+	namespace.action = sevian;
 	
 })(Sevian, _sgQuery, sgWindow);
 

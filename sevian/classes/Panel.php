@@ -19,16 +19,22 @@ class Panel2 extends Element2{
 				'action'=>'',
 				'name'=>"form_p{$this->panel}",
 				'id'=>"form_p{$this->panel}",
-				'method'=> 'POST',
+				'method'=> 'GET',
 				'enctype'=>'multipart/form-data'
 				]);
+
+			if(!$this->_main instanceof  HTML){
+				$this->_main = new HTML("");
+			}	
 			$form->add($this->_main);
 			$form->add($this->configInputs());
 			$this->html = $form->render();
+			$this->script = $this->_main->getScript();
+			//$this->_main = $this->form;
 		}else{
 			$this->html = $this->_main->render();
 		}
-		$this->script = $this->_main->getScript();
+		
 		return $this->html;
 	}
 	public function getCss(){
@@ -56,7 +62,10 @@ class Panel2 extends Element2{
 		return $div;
 		
 	}
-
+	public function getMain(){
+		
+		return $this->_main;
+	}
 }
 class Element2{
 	
