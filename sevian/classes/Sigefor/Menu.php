@@ -361,7 +361,7 @@ class Test5 extends \Sevian\Panel2 {
 
 		$this->_main = new \Sevian\HTML('div');
 		$this->_main->style = "color:red";
-		$this->_main->innerHTML = "betha";
+		$this->_main->innerHTML = "betha....";
 	}
 
 
